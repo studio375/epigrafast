@@ -2,35 +2,31 @@
 
 :root {
   --background: #ffffff;
-  --foreground: #171717;
-  --font-size: 10px;
-  --spacing: 1rem;
+  --foreground: #000000;
+  --main-color: #C19B39;
+  --seconday-color: #111111;
+  --font-size: 22px;
+  --spacing: 10px;
 }
 
 @theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-neue: var(--font-neue);
-  --font-hatton: var(--font-hatton);
+  --background: var(--background);
+  --foreground: var(--foreground);
+  --primary: var(--main-color);
+  --secondary: var(--secondary-color);
+  --font-roboto: var(--font-roboto);
   --font-size: var(--font-size);
   --spacing: var(--spacing);
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
-}
-
-.font-hatton {
-  font-family: var(--font-hatton);
-  font-weight: 300;
 }
 
 body {
   background: var(--background);
   color: var(--foreground);
-  font-family: var(--font-neue);
-  line-height: 1.2;
+  font-family: var(--font-roboto);
+  line-height: 26px;
+  font-weight: 300;
 }
+
+h1, .h1{font-size: 75px; line-height: 82px; font-weight: 200;}
+h2, .h2{font-size: 46px; line-height: 48px; font-weight: 200;}
+strong{font-weight: 700;}
