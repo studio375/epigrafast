@@ -4,7 +4,7 @@
   --background: #ffffff;
   --foreground: #000000;
   --main-color: #C19B39;
-  --seconday-color: #111111;
+  --secondary-color: #111111;
   --font-size: 22px;
   --spacing: 10px;
 }
@@ -25,8 +25,11 @@ body {
   font-family: var(--font-roboto);
   line-height: 26px;
   font-weight: 300;
+  position: relative;
 }
 
 h1, .h1{font-size: 75px; line-height: 82px; font-weight: 200;}
 h2, .h2{font-size: 46px; line-height: 48px; font-weight: 200;}
 strong{font-weight: 700;}
+.boxed{padding-left: 160px; padding-right: 160px;}
+.gradient-image{background: linear-gradient(180deg, rgba(17, 17, 17, 0) 0%, #111111 87.78%);}

@@ -2,7 +2,7 @@ import Header from "@/components/Library/header";
 import "./globals.scss";
 import SmoothScroll from "@/components/Utility/SmoothScroll";
 import {Roboto} from 'next/font/google';
-import Footer from "@/components/Library/footer";
+import Footer from "@/components/Library/Footer/footer";
 
 const roboto = Roboto({
   subsets: ['latin'],

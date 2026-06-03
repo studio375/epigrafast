@@ -1,15 +1,25 @@
-import { fetchAPI } from "@/helpers/api/fetch-api"
+"use client"
 import Image from "next/image";
 import Link from "next/link";
 import parse from 'html-react-parser';
-
-export default async function Footer({}){
-    var footer = await fetchAPI('pages', {
-        slug: 'configurazioni',
-        acf_format: 'standard'
-    });
-    console.log(footer);
-    return <footer className="relative pt-7 px-8 w-full bg-[var(--primary)] rounded-t-[55px]">
+import { useEffect, useRef } from "react";
+import { gsap } from "@/lib/gsap";
+export default function FooterClient({footer}){
+    const ref = useRef(null);
+    useEffect(() => {   
+        if(!ref.current) return;
+        var tml = gsap.timeline({
+            scrollTrigger: {
+                trigger: ref.current,
+                start: 'top 100%',
+                //end: `+=${ref.current.offsetHeight}px`,
+                scrub: true,
+            }
+        });
+        tml.from(ref.current, {yPercent: 100});
+        return () => tml.kill();
+    }, [])
+    return <footer ref={ref} className="absolute bottom-0 left-0 pt-7 px-8 w-full bg-[var(--primary)] rounded-t-[55px]">
         <div className="w-full flex items-stretch justify-between">
             <div className="flex flex-col items-start gap-5">
                 {

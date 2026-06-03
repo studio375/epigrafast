@@ -3,8 +3,8 @@ const nextConfig = {
   images: {
     remotePatterns: [
       {
-        protocol: "https",
-        hostname: "admin.dominio.com",
+        protocol: "http",
+        hostname: "admin.epigrafast.com",
         pathname: "/wp-content/uploads/**", // This is for WP
       },
     ],
