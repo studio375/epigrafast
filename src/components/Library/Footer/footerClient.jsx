@@ -4,10 +4,12 @@ import Link from "next/link";
 import parse from 'html-react-parser';
 import { useEffect, useRef } from "react";
 import { gsap } from "@/lib/gsap";
+import { usePathname } from "next/navigation";
 export default function FooterClient({footer}){
     const ref = useRef(null);
+    const pathname = usePathname();
     useEffect(() => {   
-        if(!ref.current) return;
+        if(!ref.current || pathname !== '/') return;
         var tml = gsap.timeline({
             scrollTrigger: {
                 trigger: ref.current,
@@ -17,9 +19,12 @@ export default function FooterClient({footer}){
             }
         });
         tml.from(ref.current, {yPercent: 100});
-        return () => tml.kill();
+        return () => {
+            tml.scrollTrigger.kill();
+            tml.kill();
+        };
     }, [])
-    return <footer ref={ref} className="absolute bottom-0 left-0 pt-7 px-8 w-full bg-[var(--primary)] rounded-t-[55px]">
+    return <footer ref={ref} className={`${pathname === '/'?'absolute bottom-0 left-0':'relative'} pt-7 px-8 w-full bg-[var(--primary)] rounded-t-[55px]`}>
         <div className="w-full flex items-stretch justify-between">
             <div className="flex flex-col items-start gap-5">
                 {

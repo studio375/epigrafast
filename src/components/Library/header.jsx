@@ -8,7 +8,7 @@ export default async function Header({}){
         menu: 'Main Menu'
     });
     return <header className="fixed top-0 left-0 w-full px-4 py-[15px] bg-white flex items-center justify-center z-[9999]">
-        <Image src={'/logo.svg'} width={139} height={41} alt="logo epigrafast" />
+        <Link href="/"><Image src={'/logo.svg'} width={139} height={41} alt="logo epigrafast" /></Link>
         <div className="relative mx-auto flex items-center gap-12 justify-center">
             {
                 menu_items?.map(elem => {

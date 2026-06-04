@@ -1,4 +1,5 @@
 import CustomButton from "@/components/Library/customButton";
+import HomeAnimatedSection from "@/components/Library/Home/homeAnimatedSection";
 import Paragraph from "@/components/Library/paragraph";
 import Title from "@/components/Library/title";
 import { fetchAPI } from "@/helpers/api/fetch-api";
@@ -10,7 +11,7 @@ export default async function Home() {
     slug: "homepage",
     acf_format: "standard",
   });
-  
+  if(!page) notFound();
   return <>
     <section className="flex items-center jusitfy-center pt-14 flex flex-col items-center">
       <Title className="h2 text-center">{page.acf.titolo}</Title>
@@ -25,25 +26,7 @@ export default async function Home() {
         <CustomButton href={page.acf.pulsante_dx.url} target={page.acf.pulsante_dx.target}>{page.acf.pulsante_dx.title}</CustomButton>
       </div>
     </section>
-    <section className="relative w-full mt-15 pt-12 pb-17 bg-[var(--secondary)] flex flex-col items-center">
-        <Title Tag="h2" className="h1 text-center text-[var(--primary)]">{page.acf.perche_epigrafast.titolo}</Title>
-        <div className="h-40 relative w-full">
-          <Image className="w-[calc(100%-85px)] h-auto absolute left-0 top-0" src={page.acf.perche_epigrafast.immagine_top.url} width={page.acf.perche_epigrafast.immagine_top.width} height={page.acf.perche_epigrafast.immagine_top.height} alt="" />
-        </div>
-        <div className="relative flex flex-col items-start gap-4 boxed w-[50%] mr-auto mt-10">
-          <Title Tag="h2" className="text-white">{page.acf.perche_epigrafast.sottotitolo}</Title>
-          <Paragraph className="text-white">{page.acf.perche_epigrafast.paragrafo}</Paragraph>
-        </div>
-        <div className="w-full boxed relative flex items-center gap-40 mt-16">
-          <div className="flex-1 relative px-2">
-            <Image className="w-full h-auto" src={page.acf.perche_epigrafast.immagine.url} width={page.acf.perche_epigrafast.immagine.width} height={page.acf.perche_epigrafast.immagine.height} alt="" />
-          </div>
-          <div className="relative flex flex-col items-start gap-4 flex-1">
-            <Title Tag="h2" className="text-white">{page.acf.perche_epigrafast.sottotitolo_2}</Title>
-            <Paragraph className="text-white">{page.acf.perche_epigrafast.paragrafo_2}</Paragraph>
-          </div>
-        </div>
-    </section>
+    <HomeAnimatedSection page={page} />
     <section className="relative w-full pt-13 boxed flex flex-col items-center gap-9">
       <div className="flex items-start w-full pr-12 gap-12">
         <div className="flex flex-col items-start gap-6 flex-1">

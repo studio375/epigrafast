@@ -6,5 +6,6 @@ export default async function Footer({}){
         slug: 'configurazioni',
         acf_format: 'standard'
     });
+    
     return <FooterClient footer={footer} />
 }
