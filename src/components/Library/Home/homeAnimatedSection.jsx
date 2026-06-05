@@ -3,9 +3,9 @@ import Image from "next/image";
 import Title from "../title";
 import Paragraph from "../paragraph";
 import { parseSVG, makeAbsolute } from "svg-path-parser";
-import { useEffect, useRef } from "react";
+import { useEffect, useLayoutEffect, useRef } from "react";
 import Arrow1 from "./arrow1";
-import { gsap } from "@/lib/gsap";
+import { gsap, ScrollTrigger } from "@/lib/gsap";
 import Arrow2 from "./arrow2";
 import Arrow3 from "./arrow3";
 
@@ -17,7 +17,7 @@ export default function HomeAnimatedSection({page}){
         page.acf.perche_epigrafast.step_3
     ];
     const ref = useRef(null);
-    useEffect(() => {
+    useLayoutEffect(() => {
 
         //PRIMA FASCIA
         //step 1
@@ -43,11 +43,12 @@ export default function HomeAnimatedSection({page}){
         
         var tml = gsap.timeline({
             scrollTrigger: {
-                trigger: ref.current,
+                trigger: document.getElementById('pin'),
                 pin: true,
                 scrub: true,
-                start: 'top 0%',
+                start: 'top 20%',
                 end: '+=1000px',
+                pinSpacing: true,
             }
         });
 
@@ -79,13 +80,15 @@ export default function HomeAnimatedSection({page}){
         var tml2 = gsap.timeline({
             scrollTrigger: {
                 trigger: lastLine,
-                start: 'top 30%',
+                start: 'top 50%',
+                end: 'bottom 50%',
                 scrub: true,
-                markers: true
+                //markers: true,
             }
         });
-        tml2.to(lastPlane, {opacity: 1, duration: 2, ease: 'none'})
-            .to(lastLine, {opacity: 1, duration: 2, ease: 'none'}, '<');
+        tml2.to(lastPlane, {opacity: 1, duration: 1, ease: 'none'})
+            .to(lastLine, {opacity: 1, duration: 1, ease: 'none'}, '<')
+            .from(lastLine, {strokeDasharray: "1000, 1000", ease: 'none'});
         coordinates2.forEach(step => {
             if(step.x2){
                 tml2.to(lastPlane, {left: step.x2, top: step.y2, ease: 'none'})
@@ -96,28 +99,41 @@ export default function HomeAnimatedSection({page}){
         });
 
 
+        gsap.utils.toArray('.show-on-scroll').forEach(elem => {
+            var tml3 = gsap.timeline({
+                scrollTrigger: {
+                    trigger: elem, 
+                    start: 'top 50%',
+                    end: 'bottom 50%',
+                    scrub: true,
+                }
+            });
+            tml3.to(elem, {opacity: 1, ease: 'none'});
+        })
     }, []);
     return <section ref={ref} className="relative w-full mt-15 pt-12 pb-17 bg-[var(--secondary)] flex flex-col items-center">
-        <Title Tag="h2" className="h1 text-center text-[var(--primary)]">{page.acf.perche_epigrafast.titolo}</Title>
-        <div className="h-40 w-[calc(100%-85px)] relative flex items-center justify-between">
-           {
-            steps.map((elem, index) => {
-                return <Image id={`image-step-${index+1}`} className="opacity-0" key={index} src={elem.url} width={elem.width} height={elem.height} alt="passaggi affissioni" />
-            })
-           }
-           <Arrow1 />
-           <Arrow2 />
+        <div id="pin" className="w-[calc(100%-85px)] relative">
+           <Title Tag="h2" className="h1 text-center text-[var(--primary)]">{page.acf.perche_epigrafast.titolo}</Title>
+           <div className="flex items-center justify-between">
+                {
+                    steps.map((elem, index) => {
+                        return <Image id={`image-step-${index+1}`} className="opacity-0" key={index} src={elem.url} width={elem.width} height={elem.height} alt="passaggi affissioni" />
+                    })
+                }
+                <Arrow1 />
+                <Arrow2 />
+           </div>
         </div>
-        <Arrow3 />
-        <div className="relative flex flex-col items-start gap-4 boxed w-[50%] mr-auto mt-10">
-            <Title Tag="h2" className="text-white">{page.acf.perche_epigrafast.sottotitolo}</Title>
-            <Paragraph className="text-white">{page.acf.perche_epigrafast.paragrafo}</Paragraph>
+        <div className="relative flex flex-col items-start gap-4 boxed w-[50%] mr-auto mt-10 ">
+            <Arrow3 />
+            <Title Tag="h2" className=" show-on-scroll opacity-0 text-white">{page.acf.perche_epigrafast.sottotitolo}</Title>
+            <Paragraph className=" show-on-scroll opacity-0 text-white">{page.acf.perche_epigrafast.paragrafo}</Paragraph>
         </div>
         <div className="w-full boxed relative flex items-center gap-40 mt-16">
-            <div className="flex-1 relative px-2">
+            <div className="flex-1 relative px-2 show-on-scroll opacity-0 ">
             <Image className="w-full h-auto" src={page.acf.perche_epigrafast.step_4.url} width={page.acf.perche_epigrafast.step_4.width} height={page.acf.perche_epigrafast.step_4.height} alt="" />
             </div>
-            <div className="relative flex flex-col items-start gap-4 flex-1">
+            <div className="relative flex flex-col items-start gap-4 flex-1 show-on-scroll opacity-0 ">
             <Title Tag="h2" className="text-white">{page.acf.perche_epigrafast.sottotitolo_2}</Title>
             <Paragraph className="text-white">{page.acf.perche_epigrafast.paragrafo_2}</Paragraph>
             </div>
