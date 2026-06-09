@@ -99,6 +99,8 @@ export default function HomeAnimatedSection({page}){
         });
 
 
+
+        //COMMONS
         gsap.utils.toArray('.show-on-scroll').forEach(elem => {
             var tml3 = gsap.timeline({
                 scrollTrigger: {
@@ -109,6 +111,19 @@ export default function HomeAnimatedSection({page}){
                 }
             });
             tml3.to(elem, {opacity: 1, ease: 'none'});
+        })
+
+        gsap.utils.toArray('.draw-line').forEach(elem => {
+            gsap.to(elem, {
+                scrollTrigger: {
+                    trigger: elem,
+                    start: 'top 40%',
+                    end: '+=200px',
+                    scrub: true,
+                    invalidateOnRefresh: true
+                },
+                drawSVG: '0%', ease: 'none'
+            });
         })
     }, []);
     return <section ref={ref} className="relative w-full mt-15 pt-12 pb-17 bg-[var(--secondary)] flex flex-col items-center">

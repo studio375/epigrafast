@@ -1,5 +1,6 @@
 import CustomButton from "@/components/Library/customButton";
 import Paragraph from "@/components/Library/paragraph";
+import ProductAnimatedSection from "@/components/Library/Prodotto/productAnimatedSection";
 import ScrollGallery from "@/components/Library/scrollGallery";
 import Title from "@/components/Library/title";
 import { fetchAPI } from "@/helpers/api/fetch-api";
@@ -24,11 +25,16 @@ export default async function Page({params}){
     })
 
     return <>
-        <section className="relative bg-[var(--secondary)] h-[100vh] flex flex-col items-center pt-20">
+        <section className="relative bg-[var(--secondary)] flex flex-col items-center pt-20 pb-11">
             <div className="relative flex flex-col items-center">
                 <Title Tag="h1" className="text-center text-[var(--primary)]">{page.acf.titolo}</Title>
                 <Paragraph className="text-center mt-6 text-white">{page.acf.paragrafo}</Paragraph>
                 <Title Tag="h2" className="h2 text-center text-white mt-10">{page.acf.sottotitolo}</Title>
+            </div>
+            <ProductAnimatedSection page={page} />
+            <div className="mt-10 boxed flex items-center justify-center gap-12">
+                <CustomButton href={page.acf.pulsante_demo.url} target={page.acf.pulsante_demo.target}>{page.acf.pulsante_demo.title}</CustomButton>
+                <CustomButton href={page.acf.pulsante_prodotto.url} target={page.acf.pulsante_prodotto.target}>{page.acf.pulsante_prodotto.title}</CustomButton>
             </div>
         </section>
         <section className="relative h-[100vh] flex items-center justify-center">
