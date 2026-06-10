@@ -47,6 +47,6 @@ gsap.defaults({
 
 // Ticker config
 gsap.ticker.lagSmoothing(0);
-gsap.ticker.fps(-1);
+// gsap.ticker.fps(-1);
 
 export { gsap, CustomEase, ScrollTrigger, SplitText, ScrollToPlugin, Observer, DrawSVGPlugin };

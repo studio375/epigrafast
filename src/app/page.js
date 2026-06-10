@@ -1,6 +1,8 @@
 import CustomButton from "@/components/Library/customButton";
 import HomeAnimatedSection from "@/components/Library/Home/homeAnimatedSection";
 import Paragraph from "@/components/Library/paragraph";
+import ParticlesEffect from "@/components/Library/particlesEffect";
+import ScrollVideo from "@/components/Library/scrollVideo";
 import Title from "@/components/Library/title";
 import { fetchAPI } from "@/helpers/api/fetch-api";
 import Image from "next/image";
@@ -13,11 +15,10 @@ export default async function Home() {
   });
   if(!page) notFound();
   return <>
-    <section className="flex items-center jusitfy-center pt-14 flex flex-col items-center">
-      <Title className="h2 text-center">{page.acf.titolo}</Title>
-      <div className="h-[50vh]">
-        video
-      </div>
+    <section className="relative flex items-center jusitfy-center flex flex-col items-center">
+      <ParticlesEffect />
+      <Title className="h2 text-center z-5 absolute top-14 left-[50%] -translate-x-[50%]">{page.acf.titolo}</Title>
+      <ScrollVideo page={page} />
     </section>
     <section className="relative mt-13 boxed flex flex-col items-center gap-9">
       <Paragraph className="text-center">{page.acf.paragrafo}</Paragraph>
