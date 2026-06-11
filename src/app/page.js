@@ -15,8 +15,8 @@ export default async function Home() {
   });
   if(!page) notFound();
   return <>
-    <section className="relative flex items-center jusitfy-center flex flex-col items-center">
-      <ParticlesEffect />
+    <section className="relative flex items-center jusitfy-center flex flex-col items-center boxed">
+      <ParticlesEffect page={page} />
       <Title className="h2 text-center z-5 absolute top-14 left-[50%] -translate-x-[50%]">{page.acf.titolo}</Title>
       <ScrollVideo page={page} />
     </section>

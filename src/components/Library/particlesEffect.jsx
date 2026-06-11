@@ -125,7 +125,7 @@ export default function ParticlesEffect(){
 
         animate()
     }, [])
-    return <div className="absolute h-70 w-full overflow-hidden z-4 top-0 left-0 particles-container">
-        <canvas ref={ref}></canvas>
+    return <div className="absolute h-70 w-full overflow-hidden z-5 top-0 left-0 particles-container">
+        <canvas ref={ref} className="z-4 relative"></canvas>
     </div>
 }

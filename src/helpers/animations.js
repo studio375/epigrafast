@@ -6,7 +6,8 @@ export function imageSequence(config) {
     ctx = canvasElement.getContext("2d"),
     images = [],
     onUpdate = config.onUpdate,
-    scrollTriggerInstance;
+    scrollTriggerInstance,
+    parent = canvasElement.parentNode;
 
   // Funzione per aggiornare l'immagine corrente sul canvas
   const updateImage = () => {
@@ -14,8 +15,8 @@ export function imageSequence(config) {
     if (!img) return;
 
     const devicePixelRatio = window.devicePixelRatio || 1;
-    const canvasWidth = window.innerWidth * devicePixelRatio;
-
+    var canvasWidth = parent.offsetWidth;
+    
     // Calcola le dimensioni del canvas in base all'immagine e alla densità di pixel
     let scale = canvasWidth / img.width;
     let scaledHeight = img.height * scale;
