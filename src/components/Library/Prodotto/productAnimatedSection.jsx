@@ -142,9 +142,9 @@ export default function ProductAnimatedSection({page}){
     return <div ref={ref} className="w-full flex flex-col mt-4">
         <div className="relative ml-auto px-[75px]">
             <Line1 />
-            <Image className="z-3 show-on-scroll" src={immagini[0].url} width={immagini[0].width} height={immagini[0].height} alt="" />
+            <Image className="z-3 show-on-scroll max-xl:w-60" src={immagini[0].url} width={immagini[0].width} height={immagini[0].height} alt="" />
         </div>
-        <div className="w-full flex justify-start px-32 -mt-9 show-on-scroll">
+        <div className="w-full flex justify-start px-32 max-[1680px]:px-15 -mt-9 show-on-scroll">
             <SingleStep stepObj={page.acf.step[0]} />
         </div>
         <div id="slide-animation" className="w-full flex justify-center flex-col items-center boxed z-3 min-h-60 opacity-0">
@@ -161,17 +161,17 @@ export default function ProductAnimatedSection({page}){
             <Image className="z-1 relative" src={immagini[1].url} width={immagini[1].width} height={immagini[1].height} alt=""/>
             <Line2 />
         </div>
-        <div className="w-full flex justify-end px-22 -mt-30 show-on-scroll z-1">
+        <div className="w-full flex justify-end px-22 max-[1680px]:px-5 -mt-30 max-xl:-mt-15 show-on-scroll z-1">
             <SingleStep stepObj={page.acf.step[1]} className="[&_img]:-ml-10" />
         </div>
-        <div className="flex justify-between items-end mt-18 pl-32 pr-22 z-1 show-on-scroll">
+        <div className="flex justify-between items-end mt-18 pl-32 max-[1680px]:pl-15 pr-22 max-[1680px]:pr-15 z-1 show-on-scroll">
             <SingleStep stepObj={page.acf.step[2]} className="[&_img]:-ml-[45px]" />
             <div className="relative flex">
-                <Image src={immagini[2].url} width={immagini[2].width} height={immagini[2].height} alt="" />
+                <Image className="h-auto max-[1680px]:w-50" src={immagini[2].url} width={immagini[2].width} height={immagini[2].height} alt="" />
                 <Line3 />
             </div>
         </div>
-        <div className="flex justify-between items-end mt-32 pl-16 pr-22 z-1 show-on-scroll">
+        <div className="flex justify-between items-end mt-32 pl-16 pr-22 max-[1680px]:px-10 z-1 show-on-scroll">
             <Image src={immagini[3].url} width={immagini[3].width} height={immagini[3].height} alt="" />
             <SingleStep stepObj={page.acf.step[3]} className="[&_img]:-ml-[45px]" />
         </div>

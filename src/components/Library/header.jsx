@@ -8,7 +8,7 @@ export default async function Header({}){
     var menu_items = await fetchAPI('menu-items', {
         menu: 'Main Menu'
     });
-    return <header className="fixed top-0 left-0 w-full px-4 bg-white z-[9999]">
+    return <header className="fixed top-0 left-0 w-full px-4 max-m:px-[5vw] bg-white z-[9999]">
         {/* menu desk */}
         <div className="relative flex items-center justify-center max-m:hidden py-[15px]">
             <Link href="/"><Image src={'/logo.svg'} width={139} height={41} alt="logo epigrafast" /></Link>

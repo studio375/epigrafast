@@ -14,11 +14,11 @@ export default async function Page({params}){
     });
     if(!page) notFound();
     var slides = page.acf.funzionalita.map((elem, index) => {
-        return <div key={index} className="relative flex items-stretch gap-2 w-full">
-            <Image className="w-[calc(50%-10px)] h-auto rounded-[30px]" src={elem.media.url} width={elem.media.width} height={elem.media.height} alt={elem.titolo} />
-            <div className="relative w-[calc(50%-10px)] flex flex-col items-start justify-center gap-3 px-16 bg-[#F1F3F5] rounded-[20px]">
-                <Image src={elem.icona.url} width={elem.icona.width} height={elem.icona.height} alt={elem.titolo} />
-                <span className="font-bold uppercase">{elem.titolo}</span>
+        return <div key={index} className="relative flex items-stretch gap-2 w-full max-s:flex-col max-s:flex-col-reverse max-s:bg-[#F1F3F5] max-s:rounded-[20px]">
+            <Image className="w-[calc(50%-10px)] max-s:w-full h-auto rounded-[30px]" src={elem.media.url} width={elem.media.width} height={elem.media.height} alt={elem.titolo} />
+            <div className="relative w-[calc(50%-10px)] max-s:w-full flex flex-col items-start justify-center gap-3 max-s:gap-2 px-16 max-xl:px-10 max-l:px-5 max-s:px-2 s:bg-[#F1F3F5] max-m:min-h-[50vh] s:rounded-[20px] max-s:min-h-[unset] max-s:py-2">
+                <Image className="h-auto max-l:w-8 max-s:w-5" src={elem.icona.url} width={elem.icona.width} height={elem.icona.height} alt={elem.titolo} />
+                <span className="font-bold uppercase max-s:text-[18px] max-s:-mb-2">{elem.titolo}</span>
                 <span>{elem.label}</span>
             </div>
         </div>
@@ -26,25 +26,22 @@ export default async function Page({params}){
 
     return <>
         <section className="relative bg-[var(--secondary)] flex flex-col items-center pt-20 pb-11">
-            <div className="relative flex flex-col items-center">
+            <div className="relative flex flex-col items-center boxed">
                 <Title Tag="h1" className="text-center text-[var(--primary)]">{page.acf.titolo}</Title>
                 <Paragraph className="text-center mt-6 text-white">{page.acf.paragrafo}</Paragraph>
                 <Title Tag="h2" className="h2 text-center text-white mt-10">{page.acf.sottotitolo}</Title>
             </div>
-            <ProductAnimatedSection page={page} />
-            <div className="mt-10 boxed flex items-center justify-center gap-12">
+            {/* <ProductAnimatedSection page={page} /> */}
+            <div className="mt-10 boxed flex items-center justify-center gap-12 max-s:gap-5 max-xs:flex-col max-xs:gap-2">
                 <CustomButton href={page.acf.pulsante_demo.url} target={page.acf.pulsante_demo.target}>{page.acf.pulsante_demo.title}</CustomButton>
                 <CustomButton href={page.acf.pulsante_prodotto.url} target={page.acf.pulsante_prodotto.target}>{page.acf.pulsante_prodotto.title}</CustomButton>
             </div>
         </section>
-        <section className="relative h-[100vh] flex items-center justify-center">
-            to do
-        </section>
         <ScrollGallery className="boxed relative" title="Funzionalità principali" slides={slides} />
-        <section className="mt-0 boxed relative flex flex-col items-center mb-18">
+        <section className="mt-10 boxed relative flex flex-col items-center mb-18">
             <Title Tag="h2" className="h1 text-[var(--primary)] text-center">{page.acf.titolo_risparmia}</Title>
             <Paragraph className="text-center font-bold mt-3 uppercase">{page.acf.sottotitolo_risparmia}</Paragraph>
-            <div className="flex items-center justify-center relative gap-10 mt-5">
+            <div className="flex items-center justify-center relative gap-10 mt-5 max-s:mt-3 max-m:gap-5 max-[600px]:flex-col max-[600px]:gap-2">
                 <CustomButton className="bg-[var(--primary)] text-white" href={page.acf.pulsante_risparmia_sx.url} target={page.acf.pulsante_risparmia_sx.target}>{page.acf.pulsante_risparmia_sx.title}</CustomButton>
                 <CustomButton className="bg-[var(--primary)] text-white" href={page.acf.pulsante_risparmia_dx.url} target={page.acf.pulsante_risparmia_dx.target}>{page.acf.pulsante_risparmia_dx.title}</CustomButton>
             </div>

@@ -15,11 +15,13 @@ export default function ScrollGallery({title,slides, ...props}){
         var tml = gsap.timeline({
             scrollTrigger: {
                 trigger: ref.current, 
-                start: 'top 0',
+                start: `top 150px`,
                 end: `+=${(slidesArray.length - 1) * 600}px`,
                 scrub:true,
                 pin: true,  
                 invalidateOnRefresh: true,
+                refreshPriority: 1,
+                pinSpacer: true
             }
         });
         slidesArray.forEach((element, index) => {
@@ -31,9 +33,9 @@ export default function ScrollGallery({title,slides, ...props}){
             if(tml) tml.kill();
         };
     }, []);
-    return <section {...props} className={`h-screen w-full pt-15 ${props.className || ''}`} ref={ref} >
+    return <section {...props} className={`min-h-screen w-full pt-15 max-xl:pt-9 ${props.className || ''}`}  >
         {title && <Title className="h1 text-[var(--primary)] text-center mb-6">{title}</Title>}
-        <div className="relative">
+        <div className="relative" ref={ref}>
             <div ref={refGallery} className="relative w-full">
                 {
                     slides.map((elem, index) => {
@@ -41,7 +43,7 @@ export default function ScrollGallery({title,slides, ...props}){
                     })
                 }
             </div>
-            <div className="absolute -right-2 top-1/2 transform -translate-y-1/2 flex flex-col items-center gap-2">
+            <div className="absolute -right-2 top-1/2 max-s:-top-4 max-s:right-[50%] transform s:-translate-y-1/2 max-s:translate-x-1/2 flex s:flex-col items-center gap-2">
                 {
                     slides.map((elem, index) => {
                         return <div key={index} className={`w-[12px] h-[12px] rounded-full border-[1px] border-[var(--primary)] ${activeIndex === index ? 'bg-[var(--primary)]' : 'bg-white'}`} />

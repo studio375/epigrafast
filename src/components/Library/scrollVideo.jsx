@@ -73,8 +73,8 @@ export default function ScrollVideo({page}){
 
     return <>
         <div ref={imagesRef} className="z-10 absolute top-0 left-0 w-full h-screen boxed flex justify-between items-end pb-10">
-            <Image className="translate-y-[18%] w-34 h-auto object-contain" src={page.acf.immagine_video_sx.url} width={page.acf.immagine_video_sx.width} height={page.acf.immagine_video_sx.height} alt="omino sinistra" />
-            <Image className="w-30 h-auto -translate-x-[30%] mb-auto mt-15" src={page.acf.immagine_video_dx.url} width={page.acf.immagine_video_dx.width} height={page.acf.immagine_video_dx.height} alt="omino destra" />
+            <Image className="translate-y-[18%] w-34 h-auto object-contain max-[1680px]:w-30 max-l:w-24" src={page.acf.immagine_video_sx.url} width={page.acf.immagine_video_sx.width} height={page.acf.immagine_video_sx.height} alt="omino sinistra" />
+            <Image className="w-30 h-auto -translate-x-[30%] mb-auto mt-15 max-[1680px]:w-23 max-l:w-20" src={page.acf.immagine_video_dx.url} width={page.acf.immagine_video_dx.width} height={page.acf.immagine_video_dx.height} alt="omino destra" />
         </div>
         <div ref={container} className="w-full relative">
             <canvas className="z-[-1] relative" width={1920} height={1080} ref={canvas} />
