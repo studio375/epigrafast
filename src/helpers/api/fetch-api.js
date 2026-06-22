@@ -5,8 +5,9 @@ export async function fetchAPI(path = "", urlParamsObject = {}) {
     const options = {
       next: { tags: ["all"] },
       cache: "force-cache",
-      headers: {
+       headers: {
         "Content-Type": "application/json",
+        Authorization: "Basic " + btoa("studio375:" + process.env.APPLICATION_PASSWORD),
       },
     };
 
