@@ -89,3 +89,30 @@ export function imageSequence(config) {
     },
   };
 }
+
+export function commonAnimations(){
+  gsap.utils.toArray('.show-on-scroll').forEach(elem => {
+      var tml3 = gsap.timeline({
+          scrollTrigger: {
+              trigger: elem, 
+              start: 'top 50%',
+              end: 'bottom 50%',
+              scrub: true,
+              invalidateOnRefresh: true
+          }
+      });
+      tml3.to(elem, {opacity: 1, ease: 'none'});
+  })
+  gsap.utils.toArray('.draw-line').forEach(elem => {
+      gsap.to(elem, {
+          scrollTrigger: {
+            trigger: elem,
+            start: 'top 40%',
+            end: 'bottom 40%',
+            scrub: true,
+            invalidateOnRefresh: true
+          },
+          drawSVG: '0%', ease: 'none'
+      });
+  })
+}

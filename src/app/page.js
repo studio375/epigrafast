@@ -1,5 +1,6 @@
 import CustomButton from "@/components/Library/customButton";
 import HomeAnimatedSection from "@/components/Library/Home/homeAnimatedSection";
+import StampeSection from "@/components/Library/Home/Stampe/stampeSection";
 import Paragraph from "@/components/Library/paragraph";
 import ParticlesEffect from "@/components/Library/particlesEffect";
 import ScrollVideo from "@/components/Library/scrollVideo";
@@ -27,7 +28,8 @@ export default async function Home() {
         <CustomButton href={page.acf.pulsante_dx.url} target={page.acf.pulsante_dx.target}>{page.acf.pulsante_dx.title}</CustomButton>
       </div>
     </section>
-    {/* <HomeAnimatedSection page={page} /> */}
+    <HomeAnimatedSection page={page} />
+    <StampeSection page={page} />
     <section className="relative w-full pt-13 max-s:pt-7 boxed flex flex-col items-center gap-9">
       <div className="flex items-start w-full l:pr-12 gap-12 max-m:flex-col max-m:gap-5">
         <div className="flex flex-col items-start gap-6 flex-1 max-m:gap-3">
