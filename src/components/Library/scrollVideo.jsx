@@ -40,7 +40,7 @@ export default function ScrollVideo({page}){
             scrollTrigger: {
                 trigger: imagesRef.current,
                 start: "center center",
-                end: "bottom+=" + window.innerHeight * 2.5 + "px",
+                end: window.innerHeight * 2.5 + "px",
                 pin: true,
                 scrub: true,
                 pinSpacing: true,
@@ -55,10 +55,9 @@ export default function ScrollVideo({page}){
             urls: frames,
             canvas: canvas.current,
             scrollTrigger: {
-                scroller: window.innerWidth > 1023 ? window : document.querySelector("main"),
                 trigger: container.current,
                 start: "center center",
-                end: "bottom+=" + window.innerHeight * 2.5 + "px",
+                end: window.innerHeight * 2.5 + "px",
                 pin: true,
                 scrub: true,
                 pinSpacing: true,
@@ -73,10 +72,10 @@ export default function ScrollVideo({page}){
 
     return <>
         <div ref={imagesRef} className="z-10 absolute top-0 left-0 w-full h-screen boxed flex justify-between items-end pb-10">
-            <Image className="translate-y-[18%] w-34 h-auto object-contain max-[1680px]:w-30 max-l:w-24" src={page.acf.immagine_video_sx.url} width={page.acf.immagine_video_sx.width} height={page.acf.immagine_video_sx.height} alt="omino sinistra" />
-            <Image className="w-30 h-auto -translate-x-[30%] mb-auto mt-15 max-[1680px]:w-23 max-l:w-20" src={page.acf.immagine_video_dx.url} width={page.acf.immagine_video_dx.width} height={page.acf.immagine_video_dx.height} alt="omino destra" />
+            <Image className="translate-y-[18%] w-34 h-auto object-contain max-[1680px]:w-30 max-l:w-24 max-m:w-20 max-s:w-17 max-s:translate-y-0 max-[600px]:w-12 max-[600px]:mb-6" src={page.acf.immagine_video_sx.url} width={page.acf.immagine_video_sx.width} height={page.acf.immagine_video_sx.height} alt="omino sinistra" />
+            <Image className="w-30 h-auto -translate-x-[30%] mb-auto mt-10 max-[1680px]:w-23 max-l:w-20 max-m:w-17 max-m:mt-20 max-s:w-14 max-[600px]:w-10 max-[600px]:mt-23 max-[600px]:translate-x-0" src={page.acf.immagine_video_dx.url} width={page.acf.immagine_video_dx.width} height={page.acf.immagine_video_dx.height} alt="omino destra" />
         </div>
-        <div ref={container} className="w-full relative">
+        <div ref={container} className="w-full h-auto relative">
             <canvas className="z-[-1] relative" width={1920} height={1080} ref={canvas} />
         </div>
     </>;

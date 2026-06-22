@@ -6,7 +6,7 @@ import { useState } from "react";
 export default function MobileHeader({menu_items}){
     const [menuOpen, setMenuOpen] = useState(false);
     return  <>
-        <div className="hidden max-m:flex justify-center items-center py-[15px] relative z-2">
+        <div className="hidden w-full max-m:flex justify-center items-center py-[15px] relative z-2">
             <Image className="absolute left-0 top-[50%] -translate-y-[50%] cursor-pointer" onClick={() => setMenuOpen(!menuOpen)} src={(menuOpen)?'/cross.svg':'/hamburger.svg'} width={30} height={30} alt="menu open" />
             <Link href="/" onClick={() => setMenuOpen(false)}><Image src={'/logo.svg'} width={139} height={41} alt="logo epigrafast" /></Link> 
             {
