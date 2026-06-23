@@ -14,7 +14,7 @@ export default async function Page({params}){
     if(!page) notFound();
     return <>
         <section className="relative boxed w-full flex flex-col items-center pt-12">
-            <Title Tag="h1" className="text-[var(--primary)] !font-bold uppercase !text-[30px] text-center">Stampepigrafast</Title>
+            <Title Tag="h1" className="text-[var(--primary)] !font-bold uppercase !text-[30px] text-center max-l:!text-[25px] max-s:!text-[20px] max-xs:!text-[17px]">Stampepigrafast</Title>
             <Title Tag="h2" className="h1 text-[var(--primary)] text-center">{page.acf.titolo}</Title>
         </section>
         <AnimatedSection page={page} />

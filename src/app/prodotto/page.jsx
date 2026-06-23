@@ -31,7 +31,7 @@ export default async function Page({params}){
                 <Paragraph className="text-center mt-6 text-white">{page.acf.paragrafo}</Paragraph>
                 <Title Tag="h2" className="h2 text-center text-white mt-10">{page.acf.sottotitolo}</Title>
             </div>
-            {/* <ProductAnimatedSection page={page} /> */}
+            <ProductAnimatedSection page={page} />
             <div className="mt-10 boxed flex items-center justify-center gap-12 max-s:gap-5 max-xs:flex-col max-xs:gap-2">
                 <CustomButton href={page.acf.pulsante_demo.url} target={page.acf.pulsante_demo.target}>{page.acf.pulsante_demo.title}</CustomButton>
                 <CustomButton href={page.acf.pulsante_prodotto.url} target={page.acf.pulsante_prodotto.target}>{page.acf.pulsante_prodotto.title}</CustomButton>
