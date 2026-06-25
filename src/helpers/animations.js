@@ -1,4 +1,5 @@
 import { gsap, ScrollTrigger } from "@/lib/gsap";
+import { parseSVG } from "svg-path-parser";
 
 export function imageSequence(config) {
   let playhead = { frame: 0 },
@@ -88,4 +89,60 @@ export function imageSequence(config) {
       createScrollTrigger();
     },
   };
+}
+
+export function commonAnimations(){
+  gsap.utils.toArray('.show-on-scroll').forEach(elem => {
+      var tml3 = gsap.timeline({
+          scrollTrigger: {
+              trigger: elem, 
+              start: 'top 50%',
+              end: 'bottom 50%',
+              scrub: true,
+              invalidateOnRefresh: true
+          }
+      });
+      tml3.to(elem, {opacity: 1, ease: 'none'});
+  })
+  gsap.utils.toArray('.draw-line:not(.no-common)').forEach(elem => {
+      gsap.to(elem, {
+          scrollTrigger: {
+            trigger: elem,
+            start: 'top 40%',
+            end: 'bottom 40%',
+            scrub: true,
+            invalidateOnRefresh: true
+          },
+          drawSVG: '0%', ease: 'none'
+      });
+  })
+}
+
+export function followLine(container, element, line, scrollTriggerOptions = {}){
+  var d = line.getAttribute('d');
+  var coordinates = parseSVG(d);
+  var firstStep = coordinates[0];
+  element.style.left = `${firstStep.x}px`;
+  element.style.top = `${firstStep.y}px`;
+  var tml = gsap.timeline({
+      scrollTrigger: {
+        trigger: container,
+        start: 'top 40%',
+        end: 'bottom 40%',  
+        scrub: true,
+        invalidateOnRefresh: true,
+        ...scrollTriggerOptions
+      }
+  });
+  coordinates.forEach((step, index) => {
+      var x2 = (step.x2 < -80)?0:step.x2;
+      if(step.x2){
+          tml.to(element, {left: step.x1, top: step.y1, ease: 'none'})
+              .to(element, {left: x2, top: step.y2, ease: 'none'})
+              .to(element, {left: step.x, top: step.y, ease: 'none'});
+      }else{
+          tml.to(element, {left: step.x, top: step.y, ease: 'none'});
+      }
+  });
+  return tml;
 }
