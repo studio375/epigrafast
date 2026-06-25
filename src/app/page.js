@@ -70,7 +70,7 @@ export default async function Home() {
         <CustomButton href={page.acf.pulsante_sx_provalo.url} target={page.acf.pulsante_sx_provalo.target}>{page.acf.pulsante_sx_provalo.title}</CustomButton>
         <CustomButton href={page.acf.pulsante_dx_provalo.url} target={page.acf.pulsante_dx_provalo.target}>{page.acf.pulsante_dx_provalo.title}</CustomButton>
       </div>
-      <div className="w-full mt-10 relative px-30 max-xl:px-20 max-l:px-10 max-m:px-[5vw]">
+      <div className="w-full mt-10 relative px-30 max-xl:px-20 max-l:px-10 max-m:px-[5vw] max-s:mt-5">
         <Image className="w-full h-auto relative" src={page.acf.immagine_software.url} width={page.acf.immagine_software.width} height={page.acf.immagine_software.height} alt="" />
         <div className="gradient-image absolute left-0 bottom-0 w-full h-full"></div>
       </div>

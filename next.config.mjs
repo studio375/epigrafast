@@ -7,6 +7,11 @@ const nextConfig = {
         hostname: "admin.epigrafast.com",
         pathname: "/wp-content/uploads/**", // This is for WP
       },
+      {
+        protocol: "https",
+        hostname: "admin.epigrafast.com",
+        pathname: "/wp-content/uploads/**", // This is for WP
+      },
     ],
   },
 };

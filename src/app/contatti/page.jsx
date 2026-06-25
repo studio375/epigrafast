@@ -16,7 +16,7 @@ export default async function Page({params}){
             <Title Tag="h1" className="text-[var(--primary)]">{page.acf.titolo}</Title>
             <Image className="h-auto max-xl:w-[50%] max-s:w-27 max-s:mt-3" src={page.acf.immagine.url} width={page.acf.immagine.width} height={page.acf.immagine.height} alt="Contatti" />
         </section>
-        <section className="relative flex flex-wrap items-stretch gap-2 mb-14 max-s:mb-10 boxed">
+        <section className="relative flex flex-wrap items-stretch gap-2 mb-14 max-s:mb-5 boxed">
             <div className="w-full flex flex-col items-center justify-center gap-6 max-[600px]:gap-3 px-[115px] max-l:px-5 max-xs:px-2 bg-[#F1F3F5] s:min-h-40 max-s:py-4 rounded-[20px]">
                 <Paragraph className="font-bold uppercase block text-center">{page.acf.titolo_contatti}</Paragraph>
                 <div className="relative flex items-center gap-28 max-l:gap-10 max-s:gap-4 max-[600px]:flex-col max-[600px]:gap-3">

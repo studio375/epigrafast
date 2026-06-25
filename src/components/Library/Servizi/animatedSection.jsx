@@ -46,7 +46,7 @@ export default function AnimatedSection({page}){
                 <Line3 className="absolute left-[50%] bottom-3 translate-y-[100%]" />
             </div> 
         </section>
-        <section className="w-full relative boxed flex flex-col items-center mt-21 mb-12">
+        <section className="w-full relative boxed flex flex-col items-center mt-21 mb-12 max-s:mb-5">
             <Paragraph className="h2 text-[var(--primary)] text-center">{page.acf.paragrafo_finale}</Paragraph>
             <div className="relative flex items-center justify-center gap-12 mt-[45px] max-s:gap-5 max-[600px]:flex-col max-[600px]:gap-[15px]">
                 <CustomButton className="!bg-[var(--primary)] !text-white" href={page.acf.pulsante_sx.url} target={page.acf.pulsante_sx.target}>{page.acf.pulsante_sx.title}</CustomButton>
