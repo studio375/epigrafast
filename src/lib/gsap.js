@@ -6,7 +6,6 @@ import ScrollToPlugin from "gsap/ScrollToPlugin";
 import ScrollTrigger from "gsap/ScrollTrigger";
 import SplitText from "gsap/SplitText";
 
-// Plugins
 gsap.registerPlugin(
   CustomEase,
   ScrollTrigger,
@@ -49,4 +48,12 @@ gsap.defaults({
 gsap.ticker.lagSmoothing(0);
 // gsap.ticker.fps(-1);
 
-export { gsap, CustomEase, ScrollTrigger, SplitText, ScrollToPlugin, Observer, DrawSVGPlugin };
+export {
+  gsap,
+  CustomEase,
+  ScrollTrigger,
+  SplitText,
+  ScrollToPlugin,
+  Observer,
+  DrawSVGPlugin,
+};
