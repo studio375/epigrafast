@@ -15,6 +15,7 @@ export default async function Home() {
     acf_format: "standard",
   });
   if(!page) notFound();
+  
   return <>
     <section className="relative w-full flex items-center jusitfy-center flex flex-col items-center boxed min-h-[80vh]">
       <ParticlesEffect page={page} />
