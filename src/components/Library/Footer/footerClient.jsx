@@ -2,14 +2,23 @@
 import Image from "next/image";
 import Link from "next/link";
 import parse from 'html-react-parser';
-import { useEffect, useRef } from "react";
-import { gsap } from "@/lib/gsap";
+import { useEffect, useRef, useState } from "react";
+import { gsap, ScrollTrigger } from "@/lib/gsap";
 import { usePathname } from "next/navigation";
 export default function FooterClient({footer}){
     const ref = useRef(null);
     const pathname = usePathname();
+    const [isMobile, setIsMobile] = useState(false);
+    useEffect(() => {
+        setIsMobile(window.innerWidth < 1025);
+        window.addEventListener('resize', () => {
+            setIsMobile(window.innerWidth < 1025);
+        })
+    }, []);
     useEffect(() => {   
-        if(!ref.current || pathname !== '/' || window.innerWidth <= 1025) return;
+        if(!ref.current) return;
+        gsap.set(ref.current, {yPercent: 0});
+        if (pathname !== '/' || isMobile) return;
         var tml = gsap.timeline({
             scrollTrigger: {
                 trigger: ref.current,
@@ -18,12 +27,16 @@ export default function FooterClient({footer}){
                 scrub: true,
             }
         });
-        tml.from(ref.current, {yPercent: 100});
+        if(!isMobile)
+            tml.from(ref.current, {yPercent: 100});
         return () => {
-            tml.scrollTrigger.kill();
-            tml.kill();
+            ScrollTrigger.refresh();
+            if(tml){
+                tml.scrollTrigger.kill();
+                tml.kill();
+            }
         };
-    }, [])
+    }, [isMobile, pathname])
     return <footer ref={ref} className={`${pathname === '/'?'m:absolute m:bottom-0 m:left-0 max-m:-mt-5 max-m:z-3 max-m:relative':'relative'} pt-7 px-8 max-m:px-[5vw] w-full bg-[var(--primary)] rounded-t-[55px]`}>
         <div className="w-full flex items-stretch justify-between max-s:flex-col-reverse max-s:gap-3">
             <div className="flex flex-col items-start gap-5 max-s:gap-3">

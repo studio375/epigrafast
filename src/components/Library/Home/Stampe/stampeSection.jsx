@@ -4,8 +4,9 @@ import Title from "../../title";
 import Paragraph from "../../paragraph";
 import Arrow from "./arrow";
 import { useEffect, useRef, useState } from "react";
-import { gsap } from "@/lib/gsap";
+import { gsap, ScrollTrigger } from "@/lib/gsap";
 import { commonAnimations } from "@/helpers/animations";
+import { useGSAP } from "@gsap/react";
 
 export default function StampeSection({page}){
     const ref = useRef(null);
@@ -16,17 +17,19 @@ export default function StampeSection({page}){
             setIsMobile(window.innerWidth < 1025);
         })
     }, []);
-    useEffect(() => {
+    useGSAP(() => {
         if(!ref.current) return;
         commonAnimations();
+        var tml = gsap.timeline();
         if(!isMobile){
-            var tml = gsap.timeline({
+            tml = gsap.timeline({
                 scrollTrigger: {
                     trigger: ref.current,
                     start: 'top 0',
                     end: '+=1000px',
                     pin: true,
-                    scrub: true
+                    scrub: true,
+                    invalidateOnRefresh: true,
                 }
             });
             const img1 = document.getElementById('image-1');
@@ -39,12 +42,16 @@ export default function StampeSection({page}){
                .to(img3, {opacity: 1, duration: 1, ease: 'none'})
         }
         return () => {
+            ScrollTrigger.refresh();
             if(tml){
                 tml.scrollTrigger?.kill();
                 tml.kill();
             }
         }
-    }, [isMobile]);
+    },{
+        dependencies:[isMobile],
+        revertOnUpdate: true
+    });
     return <section ref={ref} className="relative w-full bg-[#F7F0E3] pt-12 pb-6 flex flex-col">
         <div className="flex flex-col items-center boxed w-full">
             <Title Tag="h3" className="text-[var(--primary)] font-bold uppercase text-center">Stampepigrafast</Title>

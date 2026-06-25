@@ -23,16 +23,6 @@ export default function ScrollVideo({page}){
         [folder, count, prefix] // Dipendenze che fanno rigenerare i frames quando cambiano
     );
 
-    //to do
-    // useEffect(() => {
-    //     if (window.innerWidth < 1024) setFolder(`${path}_mob`);
-    //     const onResize = () => {
-    //         if (window.innerWidth < 1024) setFolder(`${path}_mob`);
-    //         else setFolder(path);
-    //     };
-    //     window.addEventListener("resize", onResize);
-    // }, []);
-
     //div con immagini
     useEffect(() => {
         if(!imagesRef.current) return;
@@ -47,36 +37,41 @@ export default function ScrollVideo({page}){
                 refreshPriority: 1,
             },
         })
+
+        return () => {
+            if(tml){
+                tml.scrollTrigger?.kill();
+                tml.kill();
+            }
+        }
     }, []);
 
     useEffect(() => {
         if (!sequence.current) {
-        sequence.current = imageSequence({
-            urls: frames,
-            canvas: canvas.current,
-            scrollTrigger: {
-                trigger: container.current,
-                start: "center center",
-                end: window.innerHeight * 2.5 + "px",
-                pin: true,
-                scrub: true,
-                pinSpacing: true,
-                refreshPriority: 2,
-            },
-        });
-        } else {
-            if (window.innerWidth <= 1023) sequence.current.update(frames);
+            sequence.current = imageSequence({
+                urls: frames,
+                canvas: canvas.current,
+                scrollTrigger: {
+                    trigger: container.current,
+                    start: "top center",
+                    end: ''+window.innerHeight * 2 + "px",
+                    pin: true,
+                    scrub: true,
+                    pinSpacing: true,
+                    refreshPriority: 2,
+                },
+            });
         }
     }, [frames]);
 
 
     return <>
-        <div ref={imagesRef} className="z-10 absolute top-0 left-0 w-full h-screen boxed flex justify-between items-end pb-10">
+        <div ref={imagesRef} className="z-10 relative top-0 left-0 w-full h-screen flex justify-between items-end pb-10">
             <Image className="translate-y-[18%] w-34 h-auto object-contain max-[1680px]:w-30 max-l:w-24 max-m:w-20 max-s:w-17 max-s:translate-y-0 max-[600px]:w-12 max-[600px]:mb-6" src={page.acf.immagine_video_sx.url} width={page.acf.immagine_video_sx.width} height={page.acf.immagine_video_sx.height} alt="omino sinistra" />
             <Image className="w-30 h-auto -translate-x-[30%] mb-auto mt-10 max-[1680px]:w-23 max-l:w-20 max-m:w-17 max-m:mt-20 max-s:w-14 max-[600px]:w-10 max-[600px]:mt-23 max-[600px]:translate-x-0" src={page.acf.immagine_video_dx.url} width={page.acf.immagine_video_dx.width} height={page.acf.immagine_video_dx.height} alt="omino destra" />
         </div>
-        <div ref={container} className="w-full h-auto relative">
-            <canvas className="z-[-1] relative" width={1920} height={1080} ref={canvas} />
+        <div ref={container} className="w-full h-auto absolute top-[50vh] aspect-1920/1080">
+            <canvas className="z-[-1] relative translate-y-[-50%] max-w-full aspect-1920/1080" width={1920} height={1080} ref={canvas} />
         </div>
     </>;
 }

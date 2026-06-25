@@ -15,7 +15,6 @@ export default async function Page({params}){
     });
     if(!page) notFound();
     var slides = page.acf.funzionalita.map((elem, index) => {
-        console.log(elem.media);
         var mediaClass = 'w-[calc(50%-10px)] max-s:w-full h-auto rounded-[30px]';
         return <div key={index} className="relative flex items-stretch gap-2 w-full max-s:flex-col max-s:flex-col-reverse max-s:bg-[#F1F3F5] max-s:rounded-[20px]">
             {
@@ -33,8 +32,8 @@ export default async function Page({params}){
     return <>
         <section className="relative bg-[var(--secondary)] flex flex-col items-center pt-20 pb-11 max-m:pt-13">
             <div className="relative flex flex-col items-center boxed">
-                <Title Tag="h1" className="text-center text-[var(--primary)]">{page.acf.titolo}</Title>
-                <Paragraph className="text-center mt-6 text-white">{page.acf.paragrafo}</Paragraph>
+                <Title Tag="h1" className="text-center text-[var(--primary)] no-animate">{page.acf.titolo}</Title>
+                <Paragraph className="text-center mt-6 text-white no-animate">{page.acf.paragrafo}</Paragraph>
                 <Title Tag="h2" className="h2 text-center text-white mt-10">{page.acf.sottotitolo}</Title>
             </div>
             <ProductAnimatedSection page={page} />

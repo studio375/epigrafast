@@ -3,7 +3,7 @@ import Image from "next/image";
 import Title from "../title";
 import Paragraph from "../paragraph";
 import { parseSVG, makeAbsolute } from "svg-path-parser";
-import { useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import Arrow1 from "./arrow1";
 import { gsap, ScrollTrigger } from "@/lib/gsap";
 import Arrow2 from "./arrow2";
@@ -17,10 +17,14 @@ export default function HomeAnimatedSection({page}){
         page.acf.perche_epigrafast.step_3
     ];
     const ref = useRef(null);
-    const [resolution, setResolution] = useState(1920);
-    useGSAP(() => {
-        if(window.innerWidth < 1025)
-            setResolution(window.innerWidth);
+    const [isMobile, setIsMobile] = useState(false);
+    useEffect(() => {
+        setIsMobile(window.innerWidth <= 1024);
+        window.addEventListener('resize', () => {
+           setIsMobile(window.innerWidth <= 1024); 
+        })
+    }, []);
+    useEffect(() => {
 
         //step 1
         const step1Line = (window.innerWidth > 1024)?document.getElementById('line-step-1'):document.getElementById('line-step-1-mobile');
@@ -50,6 +54,7 @@ export default function HomeAnimatedSection({page}){
                     start: 'top 20%',
                     end: '+=1000px',
                     pinSpacing: true,
+                    invalidateOnRefresh: true,
                 }
             });
 
@@ -74,20 +79,29 @@ export default function HomeAnimatedSection({page}){
             .to(step3Image, {opacity: 1, duration: 2, ease: 'none'});
             //END PRIMA FASCIA
         }else{
-            followLine(step1Cont, step1Plane, step1Line);
-            followLine(step2Cont, step2Camion, step2Line);
+            var tmlLine = followLine(step1Cont, step1Plane, step1Line);
+            var tmlLine2 = followLine(step2Cont, step2Camion, step2Line);
         }
 
         commonAnimations();
 
         return () => {
+            ScrollTrigger.refresh();
             if(tml){
                 tml.scrollTrigger?.kill();
                 tml.kill();
             }
+            if(tmlLine){
+                tmlLine.scrollTrigger?.kill();
+                tmlLine.kill();
+            }
+            if(tmlLine2){
+                tmlLine2.scrollTrigger?.kill();
+                tmlLine2.kill();
+            }
         }
 
-    }, [resolution]);
+    }, [isMobile]);
     return <section ref={ref} className="relative w-full mt-15 pt-12 pb-17 bg-[var(--secondary)] flex flex-col items-center">
         <div id="pin" className="w-[calc(100%-85px)] relative">
            <Title Tag="h2" className="h1 text-center text-[var(--primary)]">{page.acf.perche_epigrafast.titolo}</Title>
@@ -95,7 +109,7 @@ export default function HomeAnimatedSection({page}){
                 {
                     steps.map((elem, index) => {
                         return <div key={index} className="relative max-m:w-full flex justify-center">
-                            <Image className={`${resolution > 1024?'opacity-0':'show-on-scroll'} h-auto max-[1680px]:w-[20vw] max-m:w-[70%] max-s:w-full`} id={`image-step-${index+1}`} src={elem.url} width={elem.width} height={elem.height} alt="passaggi affissioni" />
+                            <Image className={`${isMobile?'show-on-scroll':'opacity-0'} h-auto max-[1680px]:w-[20vw] max-m:w-[70%] max-s:w-full`} id={`image-step-${index+1}`} src={elem.url} width={elem.width} height={elem.height} alt="passaggi affissioni" />
                             {(index == 0)&&<Arrow1 className="absolute left-[90%] top-[50%] -translate-y-[50%] max-m:top-[100%] max-m:left-[50%] max-m:translate-y-0 max-m:-translate-x-[50%]" />}
                             {(index == 1)&&<Arrow2 className="absolute left-[90%] top-[50%] max-m:top-[100%] max-m:left-[50%] max-m:-translate-x-[50%]" />}
                         </div>
