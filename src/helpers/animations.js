@@ -124,7 +124,6 @@ export function followLine(container, element, line, scrollTriggerOptions = {}){
   var firstStep = coordinates[0];
   element.style.left = `${firstStep.x}px`;
   element.style.top = `${firstStep.y}px`;
-
   var tml = gsap.timeline({
       scrollTrigger: {
         trigger: container,
@@ -145,4 +144,5 @@ export function followLine(container, element, line, scrollTriggerOptions = {}){
           tml.to(element, {left: step.x, top: step.y, ease: 'none'});
       }
   });
+  return tml;
 }

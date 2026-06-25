@@ -95,7 +95,7 @@ export default function HomeAnimatedSection({page}){
                 {
                     steps.map((elem, index) => {
                         return <div key={index} className="relative max-m:w-full flex justify-center">
-                            <Image className={`${resolution > 1024?'opacity-0':'show-on-scroll'} h-auto max-[1680px]:w-[20vw] max-m:w-[70%]`} id={`image-step-${index+1}`} src={elem.url} width={elem.width} height={elem.height} alt="passaggi affissioni" />
+                            <Image className={`${resolution > 1024?'opacity-0':'show-on-scroll'} h-auto max-[1680px]:w-[20vw] max-m:w-[70%] max-s:w-full`} id={`image-step-${index+1}`} src={elem.url} width={elem.width} height={elem.height} alt="passaggi affissioni" />
                             {(index == 0)&&<Arrow1 className="absolute left-[90%] top-[50%] -translate-y-[50%] max-m:top-[100%] max-m:left-[50%] max-m:translate-y-0 max-m:-translate-x-[50%]" />}
                             {(index == 1)&&<Arrow2 className="absolute left-[90%] top-[50%] max-m:top-[100%] max-m:left-[50%] max-m:-translate-x-[50%]" />}
                         </div>
