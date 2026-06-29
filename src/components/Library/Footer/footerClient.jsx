@@ -7,6 +7,7 @@ import { gsap, ScrollTrigger } from "@/lib/gsap";
 import { usePathname } from "next/navigation";
 export default function FooterClient({footer}){
     const ref = useRef(null);
+    const animationTrigger = useRef(null);
     const pathname = usePathname();
     const [isMobile, setIsMobile] = useState(false);
     useEffect(() => {
@@ -17,18 +18,22 @@ export default function FooterClient({footer}){
     }, []);
     useEffect(() => {   
         if(!ref.current) return;
-        gsap.set(ref.current, {yPercent: 0});
+        gsap.set(ref.current, {y: 0});
         if (pathname !== '/' || isMobile) return;
         var tml = gsap.timeline({
             scrollTrigger: {
-                trigger: ref.current,
+                trigger: animationTrigger.current,
                 start: 'top 100%',
-                //end: `+=${ref.current.offsetHeight}px`,
+                end: `+=300px`,
                 scrub: true,
+                markers: {
+                    startColor: '#00000000',
+                    endColor: '#00000000'
+                }
             }
         });
         if(!isMobile)
-            tml.from(ref.current, {yPercent: 100});
+            tml.to(ref.current, {y: '-100%', ease: 'none'});
         return () => {
             ScrollTrigger.refresh();
             if(tml){
@@ -37,31 +42,35 @@ export default function FooterClient({footer}){
             }
         };
     }, [isMobile, pathname])
-    return <footer ref={ref} className={`${pathname === '/'?'m:absolute m:bottom-0 m:left-0 max-m:-mt-5 max-m:z-3 max-m:relative':'relative'} pt-7 px-8 max-m:px-[5vw] w-full bg-[var(--primary)] rounded-t-[55px]`}>
-        <div className="w-full flex items-stretch justify-between max-s:flex-col-reverse max-s:gap-3">
-            <div className="flex flex-col items-start gap-5 max-s:gap-3">
-                {
-                    footer.acf.dati_footer.map((elem, index) => {
-                        var img = elem.icona;
-                        return <div key={index} className="flex flex-col items-start gap-[6px]">
-                            <Image className="h-auto max-s:w-3" src={img.url} width={img.width} height={img.height} alt="" />
-                            <span className="text-[20px] font-normal max-s:text-[18px]">{parse(elem.testo)}</span>
-                        </div>
-                    })
-                }
+    return <>
+        <div ref={animationTrigger}></div>
+        <footer ref={ref} className={`${pathname === '/'?'m:fixed m:top-[100%] m:left-0 max-m:-mt-5 max-m:z-3 max-m:relative':'relative'} pt-7 px-8 max-m:px-[5vw] w-full bg-[var(--primary)] rounded-t-[55px]`}>
+            <div className="w-full flex items-stretch justify-between max-s:flex-col-reverse max-s:items-center max-s:gap-3">
+                <div className="flex flex-col items-start max-s:items-center gap-5 max-s:gap-3">
+                    {
+                        footer.acf.dati_footer.map((elem, index) => {
+                            var img = elem.icona;
+                            return <div key={index} className="flex flex-col items-start max-s:items-center gap-[6px]">
+                                <Image className="h-auto max-s:w-3" src={img.url} width={img.width} height={img.height} alt="" />
+                                <span className="text-[20px] font-normal max-s:text-[18px] max-s:text-center">{parse(elem.testo)}</span>
+                            </div>
+                        })
+                    }
+                </div>
+                <div className="flex flex-col items-start justify-between max-m:items-end max-s:items-center max-s:gap-2">
+                    <Image className="w-auto max-l:h-10 max-m:h-7" src={footer.acf.logo_reverse.url} width={footer.acf.logo_reverse.width} height={footer.acf.logo_reverse.height} alt="" />
+                    <Image className="max-s:w-15 hidden s:block" src={footer.acf.logo_nuovaeffemme.url} width={footer.acf.logo_nuovaeffemme.width} height={footer.acf.logo_nuovaeffemme.height} alt=""/>
+                </div>
             </div>
-            <div className="flex flex-col items-start justify-between max-m:items-end max-s:items-start max-s:gap-2">
-                <Image className="w-auto max-l:h-10 max-m:h-7" src={footer.acf.logo_reverse.url} width={footer.acf.logo_reverse.width} height={footer.acf.logo_reverse.height} alt="" />
-                <Image className="max-s:w-15" src={footer.acf.logo_nuovaeffemme.url} width={footer.acf.logo_nuovaeffemme.width} height={footer.acf.logo_nuovaeffemme.height} alt=""/>
+            <Image className="s:hidden w-20 mt-9 mx-auto" src={footer.acf.logo_nuovaeffemme.url} width={footer.acf.logo_nuovaeffemme.width} height={footer.acf.logo_nuovaeffemme.height} alt=""/>
+            <div className="relative w-full mt-9 max-s:mt-4 flex items-center justify-between pt-[15px] pb-2 border-t-[1px] border-t-black max-m:flex-col max-m:items-center max-m:gap-1">
+                <span className="font-normal text-center">{parse(footer.acf.testo_finale)}</span>
+                <span className="font-normal">
+                    <Link href={'https://375.studio/'} target="_blank">Privacy Policy</Link>   •   
+                    <Link href={''}> Cookie Policy</Link>   •   
+                    <Link href={''}> Credits</Link>
+                </span>
             </div>
-        </div>
-        <div className="relative w-full mt-9 max-s:mt-4 flex items-center justify-between pt-[15px] pb-2 border-t-[1px] border-t-black max-m:flex-col max-m:items-center max-m:gap-1">
-            <span className="font-normal text-center">{parse(footer.acf.testo_finale)}</span>
-            <span className="font-normal">
-                <Link href={'https://375.studio/'} target="_blank">Privacy Policy</Link>   •   
-                <Link href={''}> Cookie Policy</Link>   •   
-                <Link href={''}> Credits</Link>
-            </span>
-        </div>
-    </footer>
+        </footer>
+    </>
 }

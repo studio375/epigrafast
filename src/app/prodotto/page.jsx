@@ -15,16 +15,16 @@ export default async function Page({params}){
     });
     if(!page) notFound();
     var slides = page.acf.funzionalita.map((elem, index) => {
-        var mediaClass = 'w-[calc(50%-10px)] max-s:w-full h-auto rounded-[30px]';
-        return <div key={index} className="relative flex items-stretch gap-2 w-full max-s:flex-col max-s:flex-col-reverse max-s:bg-[#F1F3F5] max-s:rounded-[20px]">
+        var mediaClass = 'w-[calc(50%-10px)] max-s:w-full h-auto rounded-[30px] max-s:max-h-[60%] max-s:object-cover';
+        return <div key={index} className="relative flex items-stretch h-full w-full max-s:flex-col max-s:flex-col-reverse max-s:justify-between max-s:bg-[#F1F3F5] max-s:rounded-[30px] max-[450px]:min-h-[70vh]">
             {
                 elem.media.type == 'video'? <Video videoObj={elem.media} className={`${mediaClass}`} />
                 :<Image className={`${mediaClass}`} src={elem.media.url} width={elem.media.width} height={elem.media.height} alt={elem.titolo} />
             }
-            <div className="relative w-[calc(50%-10px)] max-s:w-full flex flex-col items-start justify-center gap-3 max-s:gap-2 px-16 max-xl:px-10 max-l:px-5 max-s:px-2 s:bg-[#F1F3F5] max-m:min-h-[50vh] s:rounded-[20px] max-s:min-h-[unset] max-s:py-2">
+            <div className="relative w-[calc(50%-10px)] max-s:w-full flex flex-col items-start justify-center max-s:gap-0 px-16 max-xl:px-10 max-l:px-5 max-s:px-2 s:bg-[#F1F3F5] max-m:min-h-[50vh] s:rounded-[20px] max-s:min-h-[unset] max-s:py-2">
                 <Image className="h-auto max-l:w-8 max-s:w-5" src={elem.icona.url} width={elem.icona.width} height={elem.icona.height} alt={elem.titolo} />
-                <span className="font-bold uppercase max-s:text-[18px] max-s:-mb-2">{elem.titolo}</span>
-                <span>{elem.label}</span>
+                <span className="font-bold uppercase l:text-[21px] max-s:text-[18px] mt-1">{elem.titolo}</span>
+                <span className="mt-1 l:text-[21px]">{elem.label}</span>
             </div>
         </div>
     })
@@ -32,8 +32,8 @@ export default async function Page({params}){
     return <>
         <section className="relative bg-[var(--secondary)] flex flex-col items-center pt-20 pb-11 max-m:pt-13">
             <div className="relative flex flex-col items-center boxed">
-                <Title Tag="h1" className="text-center text-[var(--primary)] no-animate">{page.acf.titolo}</Title>
-                <Paragraph className="text-center mt-6 text-white no-animate">{page.acf.paragrafo}</Paragraph>
+                <Title Tag="h1" className="text-center text-[var(--primary)] intro-animate">{page.acf.titolo}</Title>
+                <Paragraph className="text-center mt-6 text-white intro-animate">{page.acf.paragrafo}</Paragraph>
                 <Title Tag="h2" className="h2 text-center text-white mt-10">{page.acf.sottotitolo}</Title>
             </div>
             <ProductAnimatedSection page={page} />

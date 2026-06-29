@@ -27,7 +27,7 @@ export default function HomeAnimatedSection({page}){
     useEffect(() => {
 
         //step 1
-        const step1Line = (window.innerWidth > 1024)?document.getElementById('line-step-1'):document.getElementById('line-step-1-mobile');
+        const step1Line = (!isMobile)?document.getElementById('line-step-1'):document.getElementById('line-step-1-mobile');
         const step1Plane = document.getElementById('plane-step-1')
         const step1Image = document.getElementById('image-step-1');
         const step1Cont = document.getElementById('step1-anim');
@@ -36,8 +36,8 @@ export default function HomeAnimatedSection({page}){
         const step2Camion = document.getElementById('camion-step-2');
         const step2Cont = document.getElementById('step2-anim');
         const step3Image = document.getElementById('image-step-3');
-        const step2Line = (window.innerWidth > 1024)?document.getElementById('line-step-2'):document.getElementById('line-step-2-mobile');
-        if(window.innerWidth > 1024){
+        const step2Line = (!isMobile)?document.getElementById('line-step-2'):document.getElementById('line-step-2-mobile');
+        if(!isMobile){
             //PRIMA FASCIA
             var d1 = step1Line.getAttribute('d');
             var coordinates1 = parseSVG(d1);
@@ -48,10 +48,10 @@ export default function HomeAnimatedSection({page}){
             
             var tml = gsap.timeline({
                 scrollTrigger: {
-                    trigger: document.getElementById('pin'),
+                    trigger: (window.innerWidth > 3000)?ref.current.parentNode:document.getElementById('pin'),
                     pin: true,
                     scrub: true,
-                    start: 'top 20%',
+                    start: (window.innerWidth > 3000)?'top 0':'top 20%',
                     end: '+=1000px',
                     pinSpacing: true,
                     invalidateOnRefresh: true,
@@ -102,16 +102,16 @@ export default function HomeAnimatedSection({page}){
         }
 
     }, [isMobile]);
-    return <section ref={ref} className="relative w-full mt-15 pt-12 pb-17 bg-[var(--secondary)] flex flex-col items-center">
+    return <section ref={ref} className="relative w-full pt-12 max-s:pt-6 pb-17 max-m:pb-10 max-s:pb-6 flex flex-col items-center max-w-192">
         <div id="pin" className="w-[calc(100%-85px)] relative">
            <Title Tag="h2" className="h1 text-center text-[var(--primary)]">{page.acf.perche_epigrafast.titolo}</Title>
            <div className="flex items-center justify-between max-m:flex-col max-m:gap-20 max-m:mt-3">
                 {
                     steps.map((elem, index) => {
                         return <div key={index} className="relative max-m:w-full flex justify-center">
-                            <Image className={`${isMobile?'show-on-scroll':'opacity-0'} h-auto max-[1680px]:w-[20vw] max-m:w-[70%] max-s:w-full`} id={`image-step-${index+1}`} src={elem.url} width={elem.width} height={elem.height} alt="passaggi affissioni" />
-                            {(index == 0)&&<Arrow1 className="absolute left-[90%] top-[50%] -translate-y-[50%] max-m:top-[100%] max-m:left-[50%] max-m:translate-y-0 max-m:-translate-x-[50%]" />}
-                            {(index == 1)&&<Arrow2 className="absolute left-[90%] top-[50%] max-m:top-[100%] max-m:left-[50%] max-m:-translate-x-[50%]" />}
+                            <Image className={`${isMobile?'show-on-scroll':'opacity-0'} h-auto max-[1850px]:w-[20vw] max-m:w-[70%] max-s:w-full z-1`} id={`image-step-${index+1}`} src={elem.url} width={elem.width} height={elem.height} alt="passaggi affissioni" />
+                            {(index == 0)&&<Arrow1 className="absolute left-[90%] top-[50%] w-28 max-[1680px]:w-28 -translate-y-[50%] max-m:top-[100%] max-m:w-auto max-m:left-[50%] max-m:translate-y-0 max-m:-translate-x-[50%]" />}
+                            {(index == 1)&&<Arrow2 className="absolute left-[90%] top-[50%] w-41 max-[1850px]:w-38 max-xl:w-30 max-l:w-23 max-m:w-auto max-m:top-[100%] max-m:left-[50%] max-m:-translate-x-[50%]" />}
                         </div>
                     })
                 }

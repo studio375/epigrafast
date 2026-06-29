@@ -29,8 +29,12 @@ export default async function Home() {
         <CustomButton href={page.acf.pulsante_dx.url} target={page.acf.pulsante_dx.target}>{page.acf.pulsante_dx.title}</CustomButton>
       </div>
     </section>
-    <HomeAnimatedSection page={page} />
-    <StampeSection page={page} />
+    <div className="relative w-full bg-[var(--secondary)] mt-15 max-m:mt-10 max-s:mt-6 flex justify-center min-h-screen items-center">
+      <HomeAnimatedSection page={page} />
+    </div>
+    <div className="relative w-full bg-[#F7F0E3] flex justify-center min-h-screen items-center">
+      <StampeSection page={page} />
+    </div>
     <section className="relative w-full pt-13 max-s:pt-7 boxed flex flex-col items-center gap-9">
       <div className="flex items-start w-full l:pr-12 gap-12 max-m:flex-col max-m:gap-5">
         <div className="flex flex-col items-start gap-6 flex-1 max-m:gap-3">

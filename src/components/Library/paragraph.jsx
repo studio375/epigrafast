@@ -7,21 +7,28 @@ export default function Paragraph({children, ...props}){
     useEffect(() => {
         if(!ref.current) return;
         if(Array.from(ref.current.classList).indexOf('no-animate') > -1) return;
+
         var splitText = SplitText.create(ref.current, {
             type: 'words, chars',
             onSplit(self) {
                 gsap.set(self.chars, {opacity: 0, yPercent:40})
             }
         });
-        var tml = gsap.timeline({
-            scrollTrigger: {
-                trigger: ref.current, 
-                start: 'top 60%',
-                end: '+=230px',
-                scrub: true,
-            }
-        });
-        tml.to(splitText.chars, {opacity: 1, yPercent: 0, stagger: 1});
+        if(Array.from(ref.current.classList).indexOf('intro-animate') > -1){
+            gsap.to(splitText.chars, {opacity: 1, yPercent: 0, stagger: 0.005, duration: 2, delay: 0.5});
+        }else{
+            var tml = gsap.timeline({
+                scrollTrigger: {
+                    trigger: ref.current, 
+                    start: 'top 70%',
+                    end: '+=230px',
+                    scrub: true,
+                }
+            });
+            tml.to(splitText.chars, {opacity: 1, yPercent: 0, stagger: 1});
+        }
+        
+        
 
     }, [])
     return <span ref={ref} {...props} className={`${props.className || ''}`}>{parse(children)}</span>

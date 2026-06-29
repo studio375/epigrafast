@@ -41,7 +41,7 @@ export default function ProductAnimatedSection({page}){
             start: `top ${isMobile?'45':'55'}%`,
             end: `bottom ${isMobile?'45':'55'}%`,  
         });
-        tml2.to(camion2, {opacity: 0}, '3.4');
+        tml2.to(camion2, {opacity: 0, ease: 'none', duration: 0.5}, `-=${window.innerWidth > 1700?'1':'2'}`);
         if(!isMobile){
             var tmlRotate = gsap.timeline({
                 scrollTrigger:{
@@ -112,7 +112,7 @@ export default function ProductAnimatedSection({page}){
         </div>
         <div className="relative w-full order-5 flex justify-end boxed [1680px]:!px-22 [1150px]:!px-5 -mt-30 max-xl:-mt-15 max-[1400px]:-mt-8 max-s:-mt-14 z-1 max-[1150px]:order-4 max-[1150px]:pt-17 max-[1150px]:justify-center">
             {isMobile && <LineMobile className="absolute top-0 left-[50%] -translate-x-[50%]" />}
-            <SingleStep stepObj={page.acf.step[1]} className="min-[1150px]:[&_img]:-ml-10 show-on-scroll" />
+            <SingleStep stepObj={page.acf.step[1]} className="min-[1150px]:[&_img]:-ml-10 min-[1150px]:-mr-10 show-on-scroll" />
         </div>
         <div className="relative order-6 boxed flex justify-between items-end mt-18 [1680px]:!pl-32 xl:!pl-15 [1680px]:!pr-22 xl:!pr-15 z-1 show-on-scroll max-[1150px]:flex-col max-[1150px]:items-center max-[1150px]:mt-30 max-[1150px]:gap-4">
             <SingleStep stepObj={page.acf.step[2]} className="min-[1150px]:[&_img]:-ml-[45px]" />

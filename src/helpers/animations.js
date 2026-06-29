@@ -97,9 +97,9 @@ export function commonAnimations(){
           scrollTrigger: {
               trigger: elem, 
               start: 'top 50%',
-              end: 'bottom 50%',
+              end: '+=200px',
               scrub: true,
-              invalidateOnRefresh: true
+              invalidateOnRefresh: true,
           }
       });
       tml3.to(elem, {opacity: 1, ease: 'none'});
@@ -118,7 +118,7 @@ export function commonAnimations(){
   })
 }
 
-export function followLine(container, element, line, scrollTriggerOptions = {}){
+export function followLine(container, element, line, scrollTriggerOptions = {}, skip = []){
   var d = line.getAttribute('d');
   var coordinates = parseSVG(d);
   var firstStep = coordinates[0];
@@ -135,14 +135,20 @@ export function followLine(container, element, line, scrollTriggerOptions = {}){
       }
   });
   coordinates.forEach((step, index) => {
-      var x2 = (step.x2 < -80)?0:step.x2;
-      if(step.x2){
-          tml.to(element, {left: step.x1, top: step.y1, ease: 'none'})
-              .to(element, {left: x2, top: step.y2, ease: 'none'})
-              .to(element, {left: step.x, top: step.y, ease: 'none'});
-      }else{
-          tml.to(element, {left: step.x, top: step.y, ease: 'none'});
-      }
+    var skipX = (skip[index]?.indexOf('x') > -1);
+    var skipX1 = (skip[index]?.indexOf('x1') > -1);
+    var skipX2 = (skip[index]?.indexOf('x2') > -1);
+    var x2 = (step.x2 < -80)?0:step.x2;
+    if(step.x2){
+      if(!skipX1)
+        tml.to(element, {left: step.x1, top: step.y1, ease: 'none'});
+      if(!skipX2)
+        tml.to(element, {left: x2, top: step.y2, ease: 'none'});
+      if(!skipX)
+        tml.to(element, {left: step.x, top: step.y, ease: 'none'});
+    }else{
+        tml.to(element, {left: step.x, top: step.y, ease: 'none'});
+    }
   });
   return tml;
 }

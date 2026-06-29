@@ -22,6 +22,6 @@ export default async function Page({params}){
             <Title Tag="h1" className="text-center text-[var(--primary)]">{page.acf.titolo}</Title>
             <Image className="mt-5 s:-mb-15 max-[1680px]:w-[40%] max-m:mt-3 max-s:w-27" src={page.acf.immagine_top.url} width={page.acf.immagine_top.width} height={page.acf.immagine_top.height} alt="Testimonianze" />
         </section>
-        <ScrollGallery className="boxed xl:!px-32 mb-10 max-s:mb-5" slides={slides} />
+        <ScrollGallery className="boxed min-[1680px]:!px-32 mb-10 max-s:mb-5" slides={slides} />
     </>   
 }   
