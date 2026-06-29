@@ -23,6 +23,23 @@ export default function ScrollVideo({page}){
         [folder, count, prefix] // Dipendenze che fanno rigenerare i frames quando cambiano
     );
 
+    useEffect(() => {
+        if(window.innerWidth < 769){
+            setFolder('video_pc_mobile');
+            console.log('setto mobile');
+        }else{
+            setFolder('video_pc');
+        }
+        window.addEventListener('resize', () => {
+            if(window.innerWidth < 769){
+                setFolder('video_pc_mobile');
+                console.log('setto mobile');
+            }else{
+                setFolder('video_pc');
+            }
+        })
+    })
+
     //div con immagini
     useEffect(() => {
         if(!imagesRef.current) return;
@@ -61,6 +78,8 @@ export default function ScrollVideo({page}){
                     refreshPriority: 2,
                 },
             });
+        }else {
+            if (window.innerWidth < 769) sequence.current.update(frames);
         }
     }, [frames]);
 
