@@ -18,7 +18,17 @@ export default function AnimatedSection({page}){
         const line1Cont = document.getElementById('line-1-container');
         const line1 = (window.innerWidth > 1024)? document.getElementById('line-1'):document.getElementById('line-1-mobile');
         const plane1 = document.getElementById('plane-1');
-        followLine(line1Cont, plane1, line1, {}, {1:['x2']});
+        var tml = followLine(line1Cont, plane1, line1, {}, {1:['x2']});
+        if(window.innerWidth > 1024)
+            tml.to(plane1, {opacity: 0, ease: 'none', duration: 0.5}, `-=2`);
+
+        return () => {
+            if(tml){
+                tml.scrollTrigger?.kill();
+                tml.kill();
+            }
+        }
+
     })
     return <>
         <section className="mt-10 relative w-full boxed m:!pr-10 max-s:mt-5">

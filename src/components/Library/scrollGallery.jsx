@@ -33,7 +33,7 @@ export default function ScrollGallery({title,slides, ...props}){
             if(index > 0){
                 tml.to(element, {opacity: 1, duration: 0.5, ease: 'none'})
                     .to(element, {y: 0, duration: 1, ease:"none"}, '<')
-                    .to(slidesArray[index-1], {opacity: 0.4, duration: 1, ease: 'none'}, '<')
+                    .to(slidesArray[index-1], {opacity: 0, duration: 1, ease: 'none'}, '<')
                     .add(() => setActiveIndex(index));
             }
            
