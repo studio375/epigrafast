@@ -16,11 +16,11 @@ export function imageSequence(config) {
     if (!img) return;
 
     const devicePixelRatio = window.devicePixelRatio || 1;
-    var canvasWidth = parent.offsetWidth;
+    var canvasWidth = parent.offsetWidth*devicePixelRatio;
+    var imgRatio = img.width / img.height;
     
     // Calcola le dimensioni del canvas in base all'immagine e alla densità di pixel
-    let scale = canvasWidth / img.width;
-    let scaledHeight = img.height * scale;
+    let scaledHeight = canvasWidth/imgRatio;
 
     // Imposta le dimensioni del canvas
     canvasElement.width = canvasWidth;
@@ -63,7 +63,9 @@ export function imageSequence(config) {
   // Funzione per ricreare lo ScrollTrigger
   const createScrollTrigger = () => {
     if (scrollTriggerInstance) {
+      return;
       scrollTriggerInstance.kill(); // Rimuove il trigger esistente se presente
+      ScrollTrigger.refresh();
     }
     scrollTriggerInstance = gsap.to(playhead, {
       frame: images.length - 1,

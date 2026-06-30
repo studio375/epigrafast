@@ -22,7 +22,7 @@ export default async function Home() {
       <Title className="boxed h2 text-center w-full z-5 absolute top-14 left-[50%] -translate-x-[50%]">{page.acf.titolo}</Title>
       <ScrollVideo page={page} />
     </section>
-    <section className="relative mt-5 boxed flex flex-col items-center gap-9 max-m:gap-7 max-s:gap-5 max-s:-mt-5">
+    <section className="relative mt-5 boxed flex flex-col items-center gap-9 max-m:gap-7 max-s:gap-5 max-s:-mt-10 max-xxs:-mt-12">
       <Paragraph className="text-center">{page.acf.paragrafo}</Paragraph>
       <div className="flex gap-11 items-center justify-center max-l:gap-7 max-m:gap-5 max-s:flex-col max-s:gap-3">
         <CustomButton href={page.acf.pulsante_sx.url} target={page.acf.pulsante_sx.target}>{page.acf.pulsante_sx.title}</CustomButton>
