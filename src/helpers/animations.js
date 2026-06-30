@@ -142,6 +142,18 @@ export function commonAnimations(){
           y: '0', ease: 'none'
       });
   })
+  gsap.utils.toArray('.box-animation').forEach(elem => {
+      gsap.to(elem, {
+          scrollTrigger: {
+            trigger: elem,
+            start: 'top 100%',
+            end: '+=300px',
+            scrub: true,
+            invalidateOnRefresh: true,
+          },
+          y: '0', opacity: 1, ease: 'none'
+      });
+  })
 }
 
 export function followLine(container, element, line, scrollTriggerOptions = {}, skip = []){
