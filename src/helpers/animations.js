@@ -97,11 +97,11 @@ export function commonAnimations(){
   gsap.utils.toArray('.show-on-scroll').forEach(elem => {
       var tml3 = gsap.timeline({
           scrollTrigger: {
-              trigger: elem, 
-              start: 'top 50%',
-              end: '+=200px',
-              scrub: true,
-              invalidateOnRefresh: true,
+            trigger: elem, 
+            start: `top ${window.innerWidth<768?70:50}%`,
+            end: '+=200px',
+            scrub: true,
+            invalidateOnRefresh: true,
           }
       });
       tml3.to(elem, {opacity: 1, ease: 'none'});
@@ -122,7 +122,7 @@ export function commonAnimations(){
       gsap.to(elem, {
           scrollTrigger: {
             trigger: elem,
-            start: 'top 50%',
+            start: `top ${window.innerWidth<768?70:50}%`,
             end: 'bottom 50%',
             scrub: true,
             invalidateOnRefresh: true,
@@ -138,6 +138,7 @@ export function commonAnimations(){
             end: '+=300px',
             scrub: true,
             invalidateOnRefresh: true,
+            markers: false
           },
           y: '0', ease: 'none'
       });

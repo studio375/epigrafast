@@ -19,6 +19,7 @@ export default function HomeAnimatedSection({page}){
     const ref = useRef(null);
     const [isMobile, setIsMobile] = useState(false);
     useEffect(() => {
+        commonAnimations();
         setIsMobile(window.innerWidth <= 1024);
         window.addEventListener('resize', () => {
            setIsMobile(window.innerWidth <= 1024); 
@@ -79,14 +80,13 @@ export default function HomeAnimatedSection({page}){
             .to(step3Image, {opacity: 1, duration: 2, ease: 'none'});
             //END PRIMA FASCIA
         }else{
-            var tmlLine = followLine(step1Cont, step1Plane, step1Line);
-            var tmlLine2 = followLine(step2Cont, step2Camion, step2Line);
+            var tmlLine = followLine(step1Cont, step1Plane, step1Line, {});
+            var tmlLine2 = followLine(step2Cont, step2Camion, step2Line, {});
         }
-
-        commonAnimations();
 
         return () => {
             ScrollTrigger.refresh();
+            ScrollTrigger.sort();
             if(tml){
                 tml.scrollTrigger?.kill();
                 tml.kill();
@@ -99,6 +99,8 @@ export default function HomeAnimatedSection({page}){
                 tmlLine2.scrollTrigger?.kill();
                 tmlLine2.kill();
             }
+            ScrollTrigger.refresh();
+            ScrollTrigger.sort();
         }
 
     }, [isMobile]);

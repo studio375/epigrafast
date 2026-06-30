@@ -45,7 +45,7 @@ export default function ScrollVideo({page}){
             scrollTrigger: {
                 trigger: imagesRef.current,
                 start: "center center",
-                end: window.innerHeight * 2.5 + "px",
+                end: (window.innerWidth < 769?window.innerHeight*1:window.innerHeight*2.5) + "px",
                 pin: true,
                 scrub: true,
                 pinSpacing: true,
@@ -69,7 +69,7 @@ export default function ScrollVideo({page}){
                 scrollTrigger: {
                     trigger: container.current,
                     start: "top center",
-                    end: ''+window.innerHeight * 2 + "px",
+                    end: ''+(window.innerWidth < 769?window.innerHeight/2:window.innerHeight*2)+ "px",
                     pin: true,
                     scrub: true,
                     pinSpacing: true,

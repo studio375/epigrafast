@@ -23,10 +23,9 @@ export default async function Header({}){
                 <Link href='https://wa.me/3292070389' target="_blank"><Image src={'/wts.svg'} width={26} height={28} alt="whatsapp" /></Link>
                 <CustomButton href="mailto:epigrafast@gmail.com" target="_blank" className="!py-[5px]">Richiedi una demo</CustomButton>
             </div>
-            <div className="absolute left-0 bottom-0 w-full h-[1px] bg-[#ADADAD] block z-[1]"></div>
         </div>
         
         <MobileHeader menu_items={menu_items} />
-       
+        <div className="absolute max-m:hidden left-0 bottom-0 w-full h-[1px] bg-[#ADADAD] block z-[1]"></div>
     </header>
 }
