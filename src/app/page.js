@@ -71,7 +71,7 @@ export default async function Home() {
     </section>
     <section className="mt-10 relative w-full bg-[var(--secondary)] py-6 flex flex-col items-center max-m:pb-5">
       <Title Tag="h2" className="h1 text-[var(--primary)] boxed">{page.acf.titolo_provalo_ora}</Title>
-      <Paragraph className="text-center mt-4 text-white boxed">{page.acf.paragrafo_provalo_ora}</Paragraph>
+      <Paragraph className="text-center mt-4 text-white boxed w-120 max-w-full">{page.acf.paragrafo_provalo_ora}</Paragraph>
       <div className="flex items-center gap-7 mt-5 max-[600px]:gap-3 max-xs:flex-col boxed">
         <CustomButton href={page.acf.pulsante_sx_provalo.url} target={page.acf.pulsante_sx_provalo.target}>{page.acf.pulsante_sx_provalo.title}</CustomButton>
         <CustomButton href={page.acf.pulsante_dx_provalo.url} target={page.acf.pulsante_dx_provalo.target}>{page.acf.pulsante_dx_provalo.title}</CustomButton>

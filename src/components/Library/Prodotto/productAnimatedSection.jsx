@@ -29,8 +29,8 @@ export default function ProductAnimatedSection({page}){
         const line1 = (isMobile)?document.getElementById('line-1-mobile'):document.getElementById('line-1');
         const plane1 = document.getElementById('plane-1');
         var tml = followLine(line1Cont, plane1, line1, {
-            start: `top ${isMobile?'45':'55'}%`,
-            end: `bottom ${isMobile?'45':'55'}%`,  
+            start: `top ${isMobile?'45':'40'}%`,
+            end: `bottom ${isMobile?'45':'40'}%`,  
         });
 
         //LINEA 2   
@@ -38,17 +38,18 @@ export default function ProductAnimatedSection({page}){
         const line2 = (isMobile)?document.getElementById('line-2-mobile'):document.getElementById('line-2');
         const camion2 = document.getElementById('camion-2');
         var tml2 = followLine(line2Cont, camion2, line2, {
-            start: `top ${isMobile?'45':'55'}%`,
-            end: `bottom ${isMobile?'45':'55'}%`,  
-        }, {1:['x']});
+            start: `top ${isMobile?'45':'40'}%`,
+            end: `bottom ${isMobile?'45':'40'}%`,  
+        });
         tml2.to(camion2, {opacity: 0, ease: 'none', duration: 0.5}, `-=${window.innerWidth > 1700?'1':'1'}`);
         if(!isMobile){
             var tmlRotate = gsap.timeline({
                 scrollTrigger:{
                     trigger: camion2, 
-                    start: 'top 30%',
+                    start: 'top 40%',
+                    end: `${line2.parentNode.height.baseVal.value}px`,
                     scrub: true,
-                    invalidateOnRefresh: true
+                    invalidateOnRefresh: true,
                 },
             });
             tmlRotate.to(camion2, {rotate: 10, ease: 'none'});
@@ -59,15 +60,15 @@ export default function ProductAnimatedSection({page}){
         var tmlSlide = gsap.timeline({
             scrollTrigger: {
                 trigger: slideCont,
-                start: 'top 70%',
-                end: 'bottom 70%',
+                start: 'top 50%',
+                end: '+=300px',
                 scrub: true,
-                invalidateOnRefresh: true
+                invalidateOnRefresh: true, 
             }
         });
         tmlSlide.to(slideCont, {opacity: 1, ease: 'none'})
-                .to(slideCont.querySelectorAll('img')[0], {scale: 0.8, opacity: 0.8, y: -100, webkitFilter:"blur(5px)"})
-                .to(slideCont.querySelectorAll('img')[1], {y: 0, opacity: 1}, '<');
+                .to(slideCont.querySelectorAll('img')[0], {scale: 0.8, opacity: 0.8, y: -100, webkitFilter:"blur(5px)", ease: 'none'})
+                .to(slideCont.querySelectorAll('img')[1], {y: 0, opacity: 1, ease: 'none'}, '<');
         
         return () => {
             if(tml){

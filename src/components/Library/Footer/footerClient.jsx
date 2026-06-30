@@ -51,8 +51,15 @@ export default function FooterClient({footer}){
                         footer.acf.dati_footer.map((elem, index) => {
                             var img = elem.icona;
                             return <div key={index} className="flex flex-col items-start max-s:items-center gap-[6px]">
-                                <Image className="h-auto max-s:w-3" src={img.url} width={img.width} height={img.height} alt="" />
-                                <span className="text-[20px] font-normal max-s:text-[18px] max-s:text-center">{parse(elem.testo)}</span>
+                                {
+                                    index !== 0?<Link className="flex flex-col items-start max-s:items-center gap-[6px]" href={index==1?`https://wa.me/${elem.testo.replace(' ', '')}`:`mailto:${elem.testo}`} target="_blank">
+                                        <Image className="h-auto max-s:w-3" src={img.url} width={img.width} height={img.height} alt="" />
+                                        <span className="text-[20px] font-normal max-s:text-[18px] max-s:text-center">{parse(elem.testo)}</span>
+                                    </Link> : <>
+                                        <Image className="h-auto max-s:w-3" src={img.url} width={img.width} height={img.height} alt="" />
+                                        <span className="text-[20px] font-normal max-s:text-[18px] max-s:text-center">{parse(elem.testo)}</span>
+                                    </>
+                                }
                             </div>
                         })
                     }
@@ -63,7 +70,7 @@ export default function FooterClient({footer}){
                 </div>
             </div>
             <Image className="s:hidden w-20 mt-9 mx-auto" src={footer.acf.logo_nuovaeffemme.url} width={footer.acf.logo_nuovaeffemme.width} height={footer.acf.logo_nuovaeffemme.height} alt=""/>
-            <div className="relative w-full mt-9 max-s:mt-4 flex items-center justify-between pt-[15px] pb-2 border-t-[1px] border-t-black max-m:flex-col max-m:items-center max-m:gap-1">
+            <div className="relative w-full mt-9 max-s:mt-4 flex items-center justify-between text-[12px] pt-[15px] pb-2 border-t-[1px] border-t-black max-m:flex-col max-m:items-center max-m:gap-1">
                 <span className="font-normal text-center">{parse(footer.acf.testo_finale)}</span>
                 <span className="font-normal">
                     <Link href={'https://375.studio/'} target="_blank">Privacy Policy</Link>   •   

@@ -2,6 +2,7 @@ import Paragraph from "@/components/Library/paragraph";
 import Title from "@/components/Library/title";
 import { fetchAPI } from "@/helpers/api/fetch-api"
 import Image from "next/image";
+import Link from "next/link";
 import { notFound } from "next/navigation";
 
 export default async function Page({params}){
@@ -20,13 +21,17 @@ export default async function Page({params}){
             <div className="w-full flex flex-col items-center justify-center gap-6 max-[600px]:gap-3 px-[115px] max-l:px-5 max-xs:px-2 bg-[#F1F3F5] s:min-h-40 max-s:py-4 rounded-[20px]">
                 <Paragraph className="no-animate font-bold uppercase block text-center">{page.acf.titolo_contatti}</Paragraph>
                 <div className="relative flex items-center gap-28 max-l:gap-10 max-s:gap-4 max-[600px]:flex-col max-[600px]:gap-3">
-                    <div className="relative flex flex-col items-center gap-3 max-xl:gap-[15px] max-s:gap-1">
-                        <Image className="h-6 w-auto max-xl:h-5 max-s:h-3" src={page.acf.icona_whatsapp.url} width={page.acf.icona_whatsapp.width} height={page.acf.icona_whatsapp.height} alt="whatsapp" />
-                        <span className="h2">{page.acf.whatsapp}</span>
+                    <div className="relative">
+                        <Link className="flex flex-col items-center gap-3 max-xl:gap-[15px] max-s:gap-1 relative" href={`https://wa.me/${page.acf.whatsapp.replace(' ', '')}`} target="blank">
+                            <Image className="h-6 w-auto max-xl:h-5 max-s:h-3" src={page.acf.icona_whatsapp.url} width={page.acf.icona_whatsapp.width} height={page.acf.icona_whatsapp.height} alt="whatsapp" />
+                            <span className="h2">{page.acf.whatsapp}</span>
+                        </Link>
                     </div>
-                    <div className="relative flex flex-col items-center gap-3 max-xl:gap-[15px]">
-                        <Image className="h-6 w-auto max-xl:h-5 max-s:h-3" src={page.acf.icona_email.url} width={page.acf.icona_email.width} height={page.acf.icona_email.height} alt="whatsapp" />
-                        <span className="h2">{page.acf.email}</span>
+                    <div className="relative">
+                        <Link className="relative flex flex-col items-center gap-3 max-xl:gap-[15px]" href={`mailto:${page.acf.email}`} target="_blank">
+                            <Image className="h-6 w-auto max-xl:h-5 max-s:h-3" src={page.acf.icona_email.url} width={page.acf.icona_email.width} height={page.acf.icona_email.height} alt="whatsapp" />
+                            <span className="h2">{page.acf.email}</span>
+                        </Link>
                     </div>
                 </div>
             </div>

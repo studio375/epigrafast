@@ -20,8 +20,8 @@ export default async function Header({}){
                 }
             </div>
             <div className="relative flex items-center justify-end gap-2">
-                <Link href='#'><Image src={'/wts.svg'} width={26} height={28} alt="whatsapp" /></Link>
-                <CustomButton href="#" className="!py-[5px]">Richiedi una demo</CustomButton>
+                <Link href='https://wa.me/3292070389' target="_blank"><Image src={'/wts.svg'} width={26} height={28} alt="whatsapp" /></Link>
+                <CustomButton href="mailto:epigrafast@gmail.com" target="_blank" className="!py-[5px]">Richiedi una demo</CustomButton>
             </div>
             <div className="absolute left-0 bottom-0 w-full h-[1px] bg-[#ADADAD] block z-[1]"></div>
         </div>

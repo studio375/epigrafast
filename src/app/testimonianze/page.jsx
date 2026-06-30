@@ -14,7 +14,7 @@ export default async function Page({params}){
         return <div key={index} className="relative flex flex-col items-start justify-center gap-2 w-full h-full rounded-[20px] bg-[#F1F3F5] min-h-[65vh] pt-8 pb-8 max-m:pt-10 max-m:pb-10 max-s:pt-5 max-s:pb-5 px-16 max-l:px-10 max-m:px-5 max-s:px-2">
             {elem.immagine && <Image className="w-12 h-12 rounded-full overflow-hidden mb-6 max-s:w-6 max-s:h-6 max-s:mb-3" src={elem.immagine.url} width={elem.immagine.width} height={elem.immagine.height} alt="" />}
             <Title Tag="span" className="h2 no-animate">{elem.frase}</Title>
-            <span className="w-full block text-end font-bold uppercase m:absolute m:bottom-4 m:right-7">{elem.autore}</span>
+            <span className="w-full block text-end font-bold uppercase m:absolute m:bottom-4 m:right-7 max-xs:text-[14px]">{elem.autore}</span>
         </div>
     })
     return <>

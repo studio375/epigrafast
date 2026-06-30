@@ -18,6 +18,13 @@ export default function VenetoMap({imgObject, ...props}){
             }
         });
         tml.to(ref.current.children, {opacity: 1, duration: 1, stagger: 0.5, ease: 'none'});
+
+        return () => {
+            if(tml){
+                tml.scrollTrigger?.kill();
+                tml.kill();
+            }
+        }
     });
     return <div {...props}>
         <Image className="w-full h-auto show-on-scroll" src={imgObject.url} width={imgObject.width} height={imgObject.height} alt="" />

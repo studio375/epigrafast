@@ -150,6 +150,7 @@ export function followLine(container, element, line, scrollTriggerOptions = {}, 
   var firstStep = coordinates[0];
   element.style.left = `${firstStep.x}px`;
   element.style.top = `${firstStep.y}px`;
+
   var tml = gsap.timeline({
       scrollTrigger: {
         trigger: container,
@@ -157,7 +158,7 @@ export function followLine(container, element, line, scrollTriggerOptions = {}, 
         end: 'bottom 40%',  
         scrub: true,
         invalidateOnRefresh: true,
-        ...scrollTriggerOptions
+        ...scrollTriggerOptions,
       }
   });
   coordinates.forEach((step, index) => {
@@ -169,10 +170,8 @@ export function followLine(container, element, line, scrollTriggerOptions = {}, 
       if(!skipX1)
         tml.to(element, {left: step.x1, top: step.y1, ease: 'none'});
       if(!skipX2)
-        tml.to(element, {left: x2, top: step.y2, ease: 'none'});
+        tml.to(element, {left: (x2 < 0 && x2 > -2)?120:x2, top: (step.y2==630)?730:step.y2, ease: 'none'});
       if(!skipX)
-        tml.to(element, {left: step.x, top: step.y, ease: 'none'});
-    }else{
         tml.to(element, {left: step.x, top: step.y, ease: 'none'});
     }
   });

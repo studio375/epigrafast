@@ -46,7 +46,7 @@ export default async function Page({params}){
         <section className="mt-10 boxed relative flex flex-col items-center mb-18 max-xs:mt-16 max-s:mb-5">
             <Title Tag="h2" className="h1 text-[var(--primary)] text-center">{page.acf.titolo_risparmia}</Title>
             <Paragraph className="text-center font-bold mt-3 uppercase">{page.acf.sottotitolo_risparmia}</Paragraph>
-            <div className="flex items-center justify-center relative gap-10 mt-5 max-s:mt-3 max-m:gap-5 max-[650px]:flex-col max-[600px]:gap-2">
+            <div className="flex items-center justify-center relative gap-10 mt-5 max-s:mt-3 max-m:gap-5 max-[650px]:flex-col max-[600px]:gap-2 show-on-scroll">
                 <CustomButton className="bg-[var(--primary)] text-white" href={page.acf.pulsante_risparmia_sx.url} target={page.acf.pulsante_risparmia_sx.target}>{page.acf.pulsante_risparmia_sx.title}</CustomButton>
                 <CustomButton className="bg-[var(--primary)] text-white" href={page.acf.pulsante_risparmia_dx.url} target={page.acf.pulsante_risparmia_dx.target}>{page.acf.pulsante_risparmia_dx.title}</CustomButton>
             </div>

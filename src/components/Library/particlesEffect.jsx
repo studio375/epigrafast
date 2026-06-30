@@ -44,9 +44,11 @@ export default function ParticlesEffect(){
             }   
 
             draw(){
+                const radius = this.size / 2;
                 this.ctx.beginPath();
                 this.ctx.fillStyle = this.color;
-                this.ctx.fillRect(this.x, this.y, this.size, this.size)
+                this.ctx.arc(this.x + radius, this.y + radius, radius, 0, 2 * Math.PI);
+                this.ctx.fill();
             }
 
             update(){

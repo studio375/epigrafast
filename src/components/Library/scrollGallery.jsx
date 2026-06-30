@@ -15,7 +15,6 @@ export default function ScrollGallery({title,slides, ...props}){
         if(!ref.current || !refGallery.current) return;
         
         var slidesArray = Array.from(refGallery.current.querySelectorAll('.single-slide')); 
-        ScrollTrigger.refresh();
         var tml = gsap.timeline({
             scrollTrigger: {
                 trigger: ref.current, 
@@ -24,8 +23,9 @@ export default function ScrollGallery({title,slides, ...props}){
                 scrub:true,
                 pin: true,  
                 invalidateOnRefresh: true,
-                pinSpacer: true,
-                onLeaveBack: () => {setActiveIndex(0)}
+                refreshPriority: 1,
+                pinSpacing: true,
+                onLeaveBack: () => {setActiveIndex(0)},
             }
         });
         setTmlObject(tml);
@@ -36,9 +36,9 @@ export default function ScrollGallery({title,slides, ...props}){
                     .to(slidesArray[index-1], {opacity: 0, duration: 1, ease: 'none'}, '<')
                     .add(() => setActiveIndex(index));
             }
-           
         });
-
+        setTimeout(() => {ScrollTrigger.refresh(); console.log('adas')}, 1000);
+        
         return () => {
             ScrollTrigger.refresh();
             if(tml.scrollTrigger) tml.scrollTrigger.kill();
