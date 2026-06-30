@@ -88,7 +88,7 @@ export default function ProductAnimatedSection({page}){
         }
 
     }, [isMobile])
-    return <div ref={ref} className="w-full flex flex-col mt-4">
+    return <div ref={ref} className="w-full flex flex-col mt-4 max-w-192">
         <div className="relative boxed ml-auto px-[75px] order-1 max-[1150px]:!mx-auto">
             <Line1 className="absolute right-[78%] top-[30%] z-1 max-[1150px]:top-[90%] max-[1150px]:right-[50%]" />
             <Image className="z-3 show-on-scroll max-xl:w-60 max-l:w-50" src={immagini[0].url} width={immagini[0].width} height={immagini[0].height} alt="" />

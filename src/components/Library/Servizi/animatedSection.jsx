@@ -31,7 +31,7 @@ export default function AnimatedSection({page}){
 
     })
     return <>
-        <section className="mt-10 relative w-full boxed m:!pr-10 max-s:mt-5">
+        <section className="mt-10 relative w-full boxed m:!pr-10 max-s:mt-5 max-w-192 mx-auto">
             <div className="flex items-center justify-between gap-30 max-m:flex-col max-m:gap-8">
                 <Paragraph className="flex-1 relative intro-animate">{page.acf.paragrafo}</Paragraph>
                 <div className="flex-1 relative max-m:w-[80%]">
