@@ -78,7 +78,7 @@ export default async function Home() {
       </div>
       <div className="w-full mt-10 relative px-30 max-xl:px-20 max-l:px-10 max-m:px-[5vw] max-s:mt-5">
         <Image className="w-full h-auto relative scroll-img-animation translate-y-[100%]" src={page.acf.immagine_software.url} width={page.acf.immagine_software.width} height={page.acf.immagine_software.height} alt="" />
-        <div className="gradient-image absolute left-0 -bottom-3 w-full h-full"></div>
+        <div className="gradient-image absolute left-0 -bottom-3 w-full h-[calc(100%+30px)]"></div>
       </div>
     </section>
   </>
