@@ -60,7 +60,7 @@ export default function ProductAnimatedSection({page}){
         var tmlSlide = gsap.timeline({
             scrollTrigger: {
                 trigger: slideCont,
-                start: 'top 50%',
+                start: `top ${isMobile?70:50}%`,
                 end: '+=300px',
                 scrub: true,
                 invalidateOnRefresh: true, 
@@ -97,7 +97,7 @@ export default function ProductAnimatedSection({page}){
         <div className="w-full order-2 flex justify-start boxed [1680px]:!px-32 [1150px]:!px-15 -mt-9 show-on-scroll max-[1150px]:mt-30 max-s:mt-25 max-[1150px]:justify-center">
             <SingleStep className="z-3" stepObj={page.acf.step[0]} />
         </div>
-        <div id="slide-animation" className="relative order-3 boxed w-full flex justify-center flex-col items-center boxed z-3 min-h-60 opacity-0">
+        <div id="slide-animation" className="relative order-3 boxed w-full flex justify-center flex-col items-center boxed z-3 min-h-60 opacity-0 max-s:-mt-5">
             {
                 page.acf.animazione_slide.map((elem, index) => {
                     var moreClass = ''
