@@ -25,21 +25,31 @@ export default function StampeSection({page}){
             tml = gsap.timeline({
                 scrollTrigger: {
                     trigger: ref.current.parentNode,
-                    start: 'top 0',
+                    start: 'top 40%',
                     end: '+=1000px',
-                    pin: true,
+                    pin: false,
                     scrub: true,
                     invalidateOnRefresh: true,
                 }
             });
+            var tml2 = gsap.timeline({
+                scrollTrigger: {
+                    trigger: ref.current.parentNode,
+                    start: 'top 0',
+                    end: '+=400px',
+                    pin: true,
+                    scrub: true,
+                    invalidateOnRefresh: true,
+                }
+            })
             const img1 = document.getElementById('image-1');
             const img2 = document.getElementById('image-2');
             const img3 = document.getElementById('image-3');
             const line = document.getElementById('draw-line');
             tml.to(img1, {opacity: 1, duration: 1, ease: 'none'})
-               .to(line, {drawSVG: '0%', ease: 'none'})
-               .to(img2, {opacity: 1, duration: 1, ease: 'none'})
-               .to(img3, {opacity: 1, duration: 1, ease: 'none'})
+               .to(img3, {opacity: 1, duration: 1, ease: 'none'}, '<')
+               .to(line, {drawSVG: '0%', ease: 'none'}, '<')
+               .to(img2, {opacity: 1, duration: 1, ease: 'none'}, '0.5')
         }
         return () => {
             ScrollTrigger.refresh();

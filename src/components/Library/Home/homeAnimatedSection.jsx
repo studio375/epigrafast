@@ -118,8 +118,8 @@ export default function HomeAnimatedSection({page}){
            </div>
         </div>
         <div className="relative flex flex-col items-center gap-4 boxed m:w-[50%] mx-auto mt-10 ">
-            <Title Tag="h2" className=" show-on-scroll opacity-0 text-white text-center">{page.acf.perche_epigrafast.sottotitolo}</Title>
-            <Paragraph className="show-on-scroll opacity-0 text-white text-center">{page.acf.perche_epigrafast.paragrafo}</Paragraph>
+            <Title Tag="h2" className="text-white text-center">{page.acf.perche_epigrafast.sottotitolo}</Title>
+            <Paragraph className="text-white text-center">{page.acf.perche_epigrafast.paragrafo}</Paragraph>
         </div>
     </section>
 }

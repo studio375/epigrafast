@@ -118,6 +118,30 @@ export function commonAnimations(){
           drawSVG: '0%', ease: 'none'
       });
   })
+  gsap.utils.toArray('.line-animation').forEach(elem => {
+      gsap.to(elem, {
+          scrollTrigger: {
+            trigger: elem,
+            start: 'top 50%',
+            end: 'bottom 50%',
+            scrub: true,
+            invalidateOnRefresh: true,
+          },
+          height: '0', ease: 'none'
+      });
+  })
+  gsap.utils.toArray('.scroll-img-animation').forEach(elem => {
+      gsap.to(elem, {
+          scrollTrigger: {
+            trigger: elem.parentNode,
+            start: 'top 90%',
+            end: '+=300px',
+            scrub: true,
+            invalidateOnRefresh: true,
+          },
+          y: '0', ease: 'none'
+      });
+  })
 }
 
 export function followLine(container, element, line, scrollTriggerOptions = {}, skip = []){

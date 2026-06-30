@@ -40,8 +40,8 @@ export default function ProductAnimatedSection({page}){
         var tml2 = followLine(line2Cont, camion2, line2, {
             start: `top ${isMobile?'45':'55'}%`,
             end: `bottom ${isMobile?'45':'55'}%`,  
-        });
-        tml2.to(camion2, {opacity: 0, ease: 'none', duration: 0.5}, `-=${window.innerWidth > 1700?'1':'2'}`);
+        }, {1:['x']});
+        tml2.to(camion2, {opacity: 0, ease: 'none', duration: 0.5}, `-=${window.innerWidth > 1700?'1':'1'}`);
         if(!isMobile){
             var tmlRotate = gsap.timeline({
                 scrollTrigger:{
@@ -94,7 +94,7 @@ export default function ProductAnimatedSection({page}){
             <Image className="z-3 show-on-scroll max-xl:w-60 max-l:w-50" src={immagini[0].url} width={immagini[0].width} height={immagini[0].height} alt="" />
         </div>
         <div className="w-full order-2 flex justify-start boxed [1680px]:!px-32 [1150px]:!px-15 -mt-9 show-on-scroll max-[1150px]:mt-30 max-s:mt-25 max-[1150px]:justify-center">
-            <SingleStep stepObj={page.acf.step[0]} />
+            <SingleStep className="z-3" stepObj={page.acf.step[0]} />
         </div>
         <div id="slide-animation" className="relative order-3 boxed w-full flex justify-center flex-col items-center boxed z-3 min-h-60 opacity-0">
             {

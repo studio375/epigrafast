@@ -34,7 +34,7 @@ export default async function Page({params}){
             <div className="relative flex flex-col items-center boxed">
                 <Title Tag="h1" className="text-center text-[var(--primary)] intro-animate">{page.acf.titolo}</Title>
                 <Paragraph className="text-center mt-6 text-white intro-animate">{page.acf.paragrafo}</Paragraph>
-                <Title Tag="h2" className="h2 text-center text-white mt-10">{page.acf.sottotitolo}</Title>
+                <Title Tag="h2" className="h2 text-center text-white mt-10 intro-animate">{page.acf.sottotitolo}</Title>
             </div>
             <ProductAnimatedSection page={page} />
             <div className="mt-10 boxed flex items-center justify-center gap-12 max-s:gap-5 max-[650px]:flex-col max-xs:gap-2">
