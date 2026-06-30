@@ -31,5 +31,5 @@ export default function Paragraph({children, ...props}){
         
 
     }, [])
-    return <span ref={ref} {...props} className={`${props.className || ''}`}>{parse(children)}</span>
+    return <span ref={ref} {...props} className={`${props.className || ''}`}>{parse(children.replace(/<li>/g, '<li class="pl-2 relative"><span class="absolute left-0">•</span>'))}</span>
 }
